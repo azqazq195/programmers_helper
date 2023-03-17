@@ -1,0 +1,63 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>com.moseoh.programmers_helper</id>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+    <name>Programmers_helper</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor email="azqazq195@gmail.com" url="https://github.com/azqazq195/programmers_helper">moseoh</vendor>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+    <description><![CDATA[
+    <h1>Programmers Helper</h1>
+    프로그래머스 문제풀이 도움 Plugin 입니다.
+    프로그래머스 문제들을 intellij IDE에서 풀기 위함.
+  ]]></description>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+        <notificationGroup id="Programmers Helper.Notification" displayType="BALLOON" isLogByDefault="true"/>
+        <applicationConfigurable
+                parentId="tools"
+                id="com.moseoh.programmers_helper.settings.ui.LanguageConfigurable"
+                instance="com.moseoh.programmers_helper.settings.ui.LanguageConfigurable"
+                displayName="Programmers Helper"
+        />
+
+        <applicationService
+                serviceImplementation="com.moseoh.programmers_helper.settings.model.ProgrammersHelperSettings"/>
+    </extensions>
+
+    <actions>
+        <group id="com.moseoh.programmers_helper"
+               text="Programmers Helper"
+               popup="true"
+               icon="AllIcons.CodeWithMe.CwmPermissionEdit">
+            <add-to-group group-id="ToolsMenu" anchor="first"/>
+            <action id="com.moseoh.code conversion"
+                    class="com.moseoh.programmers_helper.conversion.action.CodeConversionAction"
+                    text="Convert Code"
+                    description="Convert code to programmers format">
+                <keyboard-shortcut keymap="$default" first-keystroke="ctrl shift F"/>
+                <keyboard-shortcut keymap="Mac OS X" first-keystroke="meta shift F"/>
+            </action>
+            <action id="CodeConversion.ParseTestCasesAction"
+                    class="com.moseoh.programmers_helper.solution.action.ParseSolutionAction"
+                    text="Parse Test Cases from URL"
+                    description="Parse test cases from the given URL">
+                <keyboard-shortcut keymap="$default" first-keystroke="ctrl shift P"/>
+                <keyboard-shortcut keymap="Mac OS X" first-keystroke="meta shift P"/>
+            </action>
+        </group>
+    </actions>
+</idea-plugin>
