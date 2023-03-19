@@ -15,8 +15,14 @@
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
     <description><![CDATA[
     <h1>Programmers Helper</h1>
-    프로그래머스 문제풀이 도움 Plugin 입니다.
-    프로그래머스 문제들을 intellij IDE에서 풀기 위함.
+    <p>Programmers Helper is an IntelliJ plugin designed to streamline your coding experience on the Programmers platform. The plugin offers seamless integration with the platform, enabling users to generate files and examples automatically by simply inputting a Programmers problem URL. Additionally, it takes care of formatting your code correctly for easy pasting on the Programmers website.</p>
+    <h3>Key Features:</h3>
+    <ul>
+      <li>Automatically generate files and examples from a Programmers problem URL</li>
+      <li>Format code for easy pasting on the Programmers website</li>
+      <li>Supports Java and Kotlin languages</li>
+    </ul>
+    <p>Please note that this plugin is specifically designed for Java and Kotlin languages, and there are no plans to support additional languages in the future. Boost your productivity and enhance your problem-solving experience on the Programmers platform with the Programmers Helper plugin.</p>
   ]]></description>
 
     <!-- Product and plugin compatibility requirements.
@@ -48,8 +54,8 @@
                     class="com.moseoh.programmers_helper.conversion.action.CodeConversionAction"
                     text="Convert Code"
                     description="Convert code to programmers format">
-                <keyboard-shortcut keymap="$default" first-keystroke="ctrl shift F"/>
-                <keyboard-shortcut keymap="Mac OS X" first-keystroke="meta shift F"/>
+                <keyboard-shortcut keymap="$default" first-keystroke="ctrl shift W"/>
+                <keyboard-shortcut keymap="Mac OS X" first-keystroke="meta shift W"/>
             </action>
             <action id="CodeConversion.ParseTestCasesAction"
                     class="com.moseoh.programmers_helper.solution.action.ParseSolutionAction"

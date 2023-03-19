@@ -6,12 +6,21 @@ import com.intellij.notification.Notifications
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
+import com.intellij.openapi.components.service
+import com.moseoh.programmers_helper.conversion.action.service.JavaConversionService
+import com.moseoh.programmers_helper.conversion.action.service.KotlinConversionService
+import com.moseoh.programmers_helper.settings.model.Language
+import com.moseoh.programmers_helper.settings.model.ProgrammersHelperSettings
 import java.awt.Toolkit
 import java.awt.datatransfer.StringSelection
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
 class CodeConversionAction : AnAction() {
+    private val settings = ProgrammersHelperSettings.instance
+    private val javaConversionService = service<JavaConversionService>()
+    private val kotlinConversionService = service<KotlinConversionService>()
+
     override fun actionPerformed(event: AnActionEvent) {
         val project = event.project
         val editor = event.getData(CommonDataKeys.EDITOR)
@@ -28,7 +37,12 @@ class CodeConversionAction : AnAction() {
             clipboard.setContents(stringSelection, stringSelection)
 
             // 복사 완료 알람
-            val notification = Notification("Programmers Helper.Notification", "클립보드 복사 완료.", "이제 프로그래머스 답안지에 붙여넣기 하세요.", NotificationType.INFORMATION)
+            val notification = Notification(
+                "Programmers Helper.Notification",
+                "클립보드 복사 완료.",
+                "이제 프로그래머스 답안지에 붙여넣기 하세요.",
+                NotificationType.INFORMATION
+            )
             Notifications.Bus.notify(notification, project)
 
             // 2초 후 알람 사라지게 하기
@@ -38,15 +52,9 @@ class CodeConversionAction : AnAction() {
         }
     }
 
-    private fun convert(code: String): String {
-        val lines = code.lines()
-        val importLines = lines.filter { it.startsWith("import") }
-        val classStartIndex = lines.indexOfFirst { it.startsWith("class Solution") }
-        val classEndIndex = lines.indexOfLast { it == "}" }
-
-        val classLines = lines.subList(classStartIndex, classEndIndex + 1)
-        val extractedLines = importLines + listOf("") + classLines
-
-        return extractedLines.joinToString(separator = "\n")
+    private fun convert(inputCode: String): String = when (settings.language) {
+        Language.Kotlin -> kotlinConversionService.convert(inputCode)
+        Language.Java -> javaConversionService.convert(inputCode)
     }
+
 }
