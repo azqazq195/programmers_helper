@@ -25,6 +25,24 @@
     <p>Please note that this plugin is specifically designed for Java and Kotlin languages, and there are no plans to support additional languages in the future. Boost your productivity and enhance your problem-solving experience on the Programmers platform with the Programmers Helper plugin.</p>
   ]]></description>
 
+    <!--
+    <h2>New Features</h2>
+    <ul>
+        <li>Logo</li>
+    </ul>
+    <h2>Bug Fixes</h2>
+    <ul>
+        <li>Fixed issue 1</li>
+        <li>Fixed issue 2</li>
+    </ul>
+    -->
+    <change-notes><![CDATA[
+    <h2>New Features</h2>
+    <ul>
+      <li>Logo Added</li>
+    </ul>
+]]></change-notes>
+
     <!-- Product and plugin compatibility requirements.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
