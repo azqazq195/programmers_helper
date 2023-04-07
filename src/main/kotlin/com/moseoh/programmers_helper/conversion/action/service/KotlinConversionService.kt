@@ -1,10 +1,10 @@
 package com.moseoh.programmers_helper.conversion.action.service
 
 import com.intellij.openapi.components.Service
-import com.moseoh.programmers_helper.conversion.action.service.`interface`.ConversionInterface
+import com.moseoh.programmers_helper.conversion.action.service.impl.IConversionService
 
 @Service
-class KotlinConversionService : ConversionInterface {
+class KotlinConversionService : IConversionService {
     override fun convert(code: String): String {
         val lines = code.lines()
         val importLines = lines.filter { it.startsWith("import") }
