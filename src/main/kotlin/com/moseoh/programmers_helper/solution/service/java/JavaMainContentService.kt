@@ -121,7 +121,8 @@ class JavaMainContentService : IMainContentService {
     override fun value(value: Any): String = when (value) {
         is String -> "\"$value\""
         is Char -> "\'$value\'"
-        is Int, is Long, is Float, is Double -> value.toString()
+        is Int, is Float, is Double -> value.toString()
+        is Long -> "${value}L"
         is Array<*> -> {
             val sb = StringBuilder()
             sb.append("new ${valueType(value)}")
