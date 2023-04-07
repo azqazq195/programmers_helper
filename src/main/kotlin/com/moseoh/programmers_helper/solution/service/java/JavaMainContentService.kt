@@ -83,10 +83,11 @@ class JavaMainContentService : IMainContentService {
 
 
     override fun printlnContent(index: Int, testCase: TestCaseDto): String {
+        val num = index + 1
         val value = when (testCase.resultType()) {
-            ReturnType.Single -> "result${index + 1}"
-            ReturnType.Array -> "Arrays.toString(result${index + 1})"
-            ReturnType.Array2D -> "Arrays.deepToString(result${index + 1})"
+            ReturnType.Single -> "result$num"
+            ReturnType.Array -> "Arrays.toString(result$num)"
+            ReturnType.Array2D -> "Arrays.deepToString(result$num)"
         }
         val values = hashMapOf<String, String>()
         values["${'$'}{result}"] = value
