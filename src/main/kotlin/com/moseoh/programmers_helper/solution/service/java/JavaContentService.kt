@@ -40,7 +40,6 @@ class JavaContentService(
         return Utils.convert(template, values)
     }
 
-    override fun importContent(): String =
-        "import java.util.Arrays;"
+    private fun importContent(): String = "import java.util.Arrays;"
 
 }

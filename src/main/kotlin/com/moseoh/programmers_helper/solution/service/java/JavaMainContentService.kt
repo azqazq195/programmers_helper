@@ -1,11 +1,13 @@
 package com.moseoh.programmers_helper.solution.service.java
 
+import com.intellij.openapi.components.Service
 import com.moseoh.programmers_helper.common.Utils
 import com.moseoh.programmers_helper.solution.model.ReturnType
 import com.moseoh.programmers_helper.solution.model.dto.SolutionDto
 import com.moseoh.programmers_helper.solution.model.dto.TestCaseDto
 import com.moseoh.programmers_helper.solution.service.impl.IMainContentService
 
+@Service
 class JavaMainContentService : IMainContentService {
     companion object {
         val MAIN_TEMPLATE = """
@@ -107,7 +109,7 @@ class JavaMainContentService : IMainContentService {
         return Utils.convert(ASSERTION_TEMPLATE, values)
     }
 
-    override fun valueType(value: Any): String = when (value) {
+    private fun valueType(value: Any): String = when (value) {
         is String -> "String"
         is Char -> "char"
         is Int -> "int"
@@ -118,7 +120,7 @@ class JavaMainContentService : IMainContentService {
         else -> throw IllegalArgumentException("입출력 데이터를 파싱하지 못 했습니다. 추가요청 부탁드려요. ${value.javaClass}")
     }
 
-    override fun value(value: Any): String = when (value) {
+    private fun value(value: Any): String = when (value) {
         is String -> "\"$value\""
         is Char -> "\'$value\'"
         is Int, is Float, is Double -> value.toString()
