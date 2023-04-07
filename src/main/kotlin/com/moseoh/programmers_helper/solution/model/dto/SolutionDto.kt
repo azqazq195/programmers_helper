@@ -19,7 +19,7 @@ data class SolutionDto(
         fun of(solution: Solution): SolutionDto {
             fun getDirectoryName(solution: Solution): String {
                 val replaceChar = if (ProgrammersHelperSettings.instance.useNameSpacing) "_" else ""
-                val invalidChars = "[\\/:;*?\"<>|\\^\\[\\]]".toRegex()
+                val invalidChars = "[\\/:;*?\"<>|\\^\\[\\]\\-]".toRegex()
                 val replacedTitle = solution.title.replace(" ", replaceChar).replace(invalidChars, "")
                 return if (replacedTitle[0].isDigit()) "_$replacedTitle" else replacedTitle
             }
@@ -35,7 +35,7 @@ data class SolutionDto(
 
 
             fun getClassContent(solution: Solution): String {
-                return Regex("""class\s+(\w+)\s*""").replace(solution.content) { "class ${getClassName(solution)}" }
+                return Regex("""class\s+(\w+)\s*""").replace(solution.content) { "class ${getClassName(solution)} " }
             }
 
             return SolutionDto(
