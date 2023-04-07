@@ -10,7 +10,7 @@ import org.junit.Test
 import org.junit.jupiter.api.Assertions.assertEquals
 
 class JavaContentServiceTest {
-    private lateinit var javaContentService: JavaContentService
+    private lateinit var javaContentService: ContentService
 
     @Before
     fun setUp() {
@@ -20,7 +20,7 @@ class JavaContentServiceTest {
             packageContentService.get(any(), any())
         } returns "package 프로젝트 경로"
         every { classContentService.get(any()) } returns "class 클래스 내용"
-        javaContentService = JavaContentService(packageContentService, classContentService)
+        javaContentService = ContentService(packageContentService, classContentService)
     }
 
     @Test

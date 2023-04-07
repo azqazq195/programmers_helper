@@ -4,8 +4,9 @@ import com.moseoh.programmers_helper.common.Utils
 import com.moseoh.programmers_helper.solution.model.ReturnType
 import com.moseoh.programmers_helper.solution.model.dto.SolutionDto
 import com.moseoh.programmers_helper.solution.model.dto.TestCaseDto
+import com.moseoh.programmers_helper.solution.service.impl.IMainContentService
 
-class MainContentService {
+class MainContentService : IMainContentService {
     companion object {
         val MAIN_TEMPLATE = """
             public static void main(String[] args) {
@@ -32,13 +33,13 @@ class MainContentService {
         """.trimIndent()
     }
 
-    fun get(solutionDto: SolutionDto): String {
+    override fun get(solutionDto: SolutionDto): String {
         val values = hashMapOf<String, String>()
         values["${'$'}{mainContent}"] = mainContent(solutionDto)
         return Utils.convert(MAIN_TEMPLATE, values)
     }
 
-    private fun mainContent(solutionDto: SolutionDto): String {
+    override fun mainContent(solutionDto: SolutionDto): String {
         return solutionDto.testCaseDtos.mapIndexed { index, testCase ->
             val values = hashMapOf<String, String>()
             values["${'$'}{values}"] = valueContents(index, solutionDto, testCase)
@@ -48,7 +49,7 @@ class MainContentService {
         }.joinToString("\n\n")
     }
 
-    private fun valueContents(index: Int, solutionDto: SolutionDto, testCase: TestCaseDto): String {
+    override fun valueContents(index: Int, solutionDto: SolutionDto, testCase: TestCaseDto): String {
         fun valueContent(type: String, name: String, value: String): String {
             val values = hashMapOf<String, String>()
             values["${'$'}{valueType}"] = type
@@ -81,7 +82,7 @@ class MainContentService {
     }
 
 
-    private fun printlnContent(index: Int, testCase: TestCaseDto): String {
+    override fun printlnContent(index: Int, testCase: TestCaseDto): String {
         val value = when (testCase.resultType()) {
             ReturnType.Single -> "result${index + 1}"
             ReturnType.Array -> "Arrays.toString(result${index + 1})"
@@ -92,7 +93,7 @@ class MainContentService {
         return Utils.convert(PRINTLN_TEMPLATE, values)
     }
 
-    private fun assertionContent(index: Int, testCase: TestCaseDto): String {
+    override fun assertionContent(index: Int, testCase: TestCaseDto): String {
         val num = index + 1
         val value = when (testCase.resultType()) {
             ReturnType.Single -> "result$num == answer$num"
@@ -105,7 +106,7 @@ class MainContentService {
         return Utils.convert(ASSERTION_TEMPLATE, values)
     }
 
-    private fun valueType(value: Any): String = when (value) {
+    override fun valueType(value: Any): String = when (value) {
         is String -> "String"
         is Char -> "char"
         is Int -> "int"
@@ -116,7 +117,7 @@ class MainContentService {
         else -> throw IllegalArgumentException("입출력 데이터를 파싱하지 못 했습니다. 추가요청 부탁드려요. ${value.javaClass}")
     }
 
-    private fun value(value: Any): String = when (value) {
+    override fun value(value: Any): String = when (value) {
         is String -> "\"$value\""
         is Char -> "\'$value\'"
         is Int, is Long, is Float, is Double -> value.toString()

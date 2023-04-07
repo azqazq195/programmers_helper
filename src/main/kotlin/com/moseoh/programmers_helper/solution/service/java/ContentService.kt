@@ -6,12 +6,13 @@ import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.VirtualFile
 import com.moseoh.programmers_helper.common.Utils
 import com.moseoh.programmers_helper.solution.model.dto.SolutionDto
+import com.moseoh.programmers_helper.solution.service.impl.IContentService
 
 @Service
-class JavaContentService(
+class ContentService(
     private val packageContentService: PackageContentService = service<PackageContentService>(),
     private val classContentService: ClassContentService = service<ClassContentService>()
-) {
+) : IContentService {
     companion object {
         val CONTENT_TEMPLATE = """
             ${'$'}{package}
@@ -28,7 +29,7 @@ class JavaContentService(
         """.trimIndent()
     }
 
-    fun get(project: Project, directory: VirtualFile, solution: SolutionDto): String {
+    override fun get(project: Project, directory: VirtualFile, solution: SolutionDto): String {
         val isImportArrays = solution.isImportArrays()
         val template = if (isImportArrays) CONTENT_TEMPLATE_WITH_IMPORT else CONTENT_TEMPLATE
 
@@ -39,7 +40,7 @@ class JavaContentService(
         return Utils.convert(template, values)
     }
 
-    private fun importContent(): String =
+    override fun importContent(): String =
         "import java.util.Arrays;"
 
 }
