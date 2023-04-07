@@ -1,8 +1,6 @@
 package com.moseoh.programmers_helper.solution.service.java
 
 import com.moseoh.programmers_helper.TestData
-import com.moseoh.programmers_helper.solution.model.dto.SolutionDto
-import io.mockk.mockk
 import org.junit.Before
 import org.junit.Test
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -10,7 +8,6 @@ import org.junit.jupiter.api.Assertions.assertEquals
 
 class JavaMainContentServiceTest {
     private lateinit var mainContentService: JavaMainContentService
-    private val solutionDto = mockk<SolutionDto>()
 
     @Before
     fun setUp() {
@@ -25,7 +22,6 @@ class JavaMainContentServiceTest {
         // when
         val content = mainContentService.get(solutionDto)
 
-        println(content)
         // then
         assertEquals(
             """

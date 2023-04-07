@@ -16,9 +16,7 @@ class JavaContentServiceTest {
     fun setUp() {
         val packageContentService = mockk<JavaPackageContentService>()
         val classContentService = mockk<JavaClassContentService>()
-        every {
-            packageContentService.get(any(), any())
-        } returns "package 프로젝트 경로"
+        every { packageContentService.get(any(), any()) } returns "package 프로젝트 경로"
         every { classContentService.get(any()) } returns "class 클래스 내용"
         javaContentService = JavaContentService(packageContentService, classContentService)
     }
