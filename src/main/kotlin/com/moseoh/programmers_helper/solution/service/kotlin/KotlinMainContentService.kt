@@ -23,15 +23,15 @@ class KotlinMainContentService : IMainContentService {
         """.trimIndent()
 
         val VALUE_TEMPLATE = """
-            val ${'$'}{valueName} = ${'$'}{value};
+            val ${'$'}{valueName} = ${'$'}{value}
         """.trimIndent()
 
         val PRINTLN_TEMPLATE = """
-            println(${'$'}{result});
+            println(${'$'}{result})
         """.trimIndent()
 
         val ASSERTION_TEMPLATE = """
-            check(${'$'}{comparison}) { "오답" };
+            check(${'$'}{comparison}) { "오답" }
         """.trimIndent()
     }
 
@@ -97,8 +97,8 @@ class KotlinMainContentService : IMainContentService {
         val num = index + 1
         val value = when (testCase.resultType()) {
             ReturnType.Single -> "result$num == answer$num"
-            ReturnType.Array -> "result$num.contentEquals(answer$num))"
-            ReturnType.Array2D -> "result$num.contentDeepEquals(answer$num))"
+            ReturnType.Array -> "result$num.contentEquals(answer$num)"
+            ReturnType.Array2D -> "result$num.contentDeepEquals(answer$num)"
         }
 
         val values = hashMapOf<String, String>()
