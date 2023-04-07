@@ -28,7 +28,6 @@ class SolutionService {
             Language.Java -> javaContentService.get(project, directory, solutionDto)
         }.replace("\n", System.lineSeparator())
         resultFile.writeText(content)
-        println(content)
         return resultFile
     }
 
