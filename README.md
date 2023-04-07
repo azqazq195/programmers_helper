@@ -1,4 +1,17 @@
-# Programmers Helper
+<div align="center">
+    <a href="https://plugins.jetbrains.com/plugin/21278-programmers-helper">
+        <img src="./src/main/resources/META-INF/pluginIcon.svg" width="280" height="280" alt="logo"/>
+    </a>
+</div>
+<h1 align="center">Programmers Helper</h1>
+<p align="center">Programmers Helper for IntelliJ. Created By moseoh.</p>
+
+<p align="center"> 
+<a href="https://plugins.jetbrains.com/plugin/21278-programmers-helper"><img src="https://img.shields.io/jetbrains/plugin/d/:21278-programmers-helper"></a>
+<a href="https://plugins.jetbrains.com/plugin/21278-programmers-helper"><img src="https://img.shields.io/jetbrains/plugin/r/rating/:21278-programmers-helper"></a>
+<a href="https://plugins.jetbrains.com/plugin/21278-programmers-helper"><img src="https://img.shields.io/jetbrains/plugin/v/:21278-programmers-helper"></a>
+</p>
+<br>
 
 프로그래머스 도우미는 프로그래머 플랫폼에서 코딩 경험을 간소화하기 위해 설계된 IntelliJ 플러그인입니다. 이 플러그인은 사용자가 프로그래머스 문제 URL을 통해 파일과 예제를 생성하고, 프로그래머 웹사이트에 쉽게 붙여넣을 수 있도록 만들어졌습니다.
 
