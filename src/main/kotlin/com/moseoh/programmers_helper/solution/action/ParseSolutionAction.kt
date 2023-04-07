@@ -50,7 +50,12 @@ class ParseSolutionAction : AnAction() {
         } catch (e: HttpStatusException) {
             Messages.showErrorDialog("Url을 확인해 주세요.\nstatus code: ${e.statusCode}", "에러")
         } catch (e: Exception) {
-            Messages.showErrorDialog("해당 url에서 정보를 읽을 수 없습니다.", "에러")
+            Messages.showErrorDialog(
+                buildString {
+                    append("해당 url 에서 정보를 읽을 수 없습니다.\n\n오래된 문제이거나 기출문제의 경우 html 양식이 달라 읽지 못할 수 있습니다.\n이외의 경우 제보해 주세요.")
+                },
+                "에러"
+            )
             throw e
         }
         return getSolution(event, false)
