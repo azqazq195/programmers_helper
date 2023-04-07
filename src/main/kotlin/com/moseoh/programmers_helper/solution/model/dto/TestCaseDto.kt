@@ -9,12 +9,15 @@ data class TestCaseDto(
 ) {
     companion object {
         fun of(testCase: TestCase): TestCaseDto {
-            return TestCaseDto(
-                values = testCase.values,
-                answer = testCase.answer
-            )
+            val values = mutableMapOf<String, Any>()
+            testCase.values.forEach { (k, v) ->
+                val newKey = if (k.first().isUpperCase()) k.replaceFirst(k.first(), k.first().lowercaseChar()) else k
+                values[newKey] = v
+            }
+            return TestCaseDto(values, testCase.answer)
         }
     }
+
 
     fun resultType(): ReturnType = when (answer) {
         is String, is Char, is Int, is Long, is Double, is Float -> ReturnType.Single
