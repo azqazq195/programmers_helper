@@ -8,7 +8,8 @@ import com.intellij.openapi.ui.Messages
 import com.intellij.openapi.vfs.VirtualFile
 import com.moseoh.programmers_helper.settings.model.Language
 import com.moseoh.programmers_helper.settings.model.ProgrammersHelperSettings
-import com.moseoh.programmers_helper.solution.model.Solution
+import com.moseoh.programmers_helper.solution.model.dto.SolutionDto
+import com.moseoh.programmers_helper.solution.service.java.JavaContentService
 import java.io.File
 import java.io.IOException
 
@@ -18,21 +19,20 @@ class SolutionService {
     private val kotlinContentService = service<KotlinContentService>()
     private val javaContentService = service<JavaContentService>()
 
-    fun createFile(project: Project, parentDirectory: VirtualFile, solution: Solution): File? {
-        val directory = getOrCreateDirectory(parentDirectory, solution) ?: return null
-        val fileName = solution.getFileName()
-        val resultFile = File(directory.path, fileName)
+    fun createFile(project: Project, parentDirectory: VirtualFile, solutionDto: SolutionDto): File? {
+        val directory = getOrCreateDirectory(parentDirectory, solutionDto) ?: return null
+        val resultFile = File(directory.path, solutionDto.fileName)
         val content = when (settings.language) {
-            Language.Kotlin -> kotlinContentService.getContent(project, directory, solution)
-            Language.Java -> javaContentService.getContent(project, directory, solution)
+            Language.Kotlin -> kotlinContentService.getContent(project, directory, solutionDto)
+            Language.Java -> javaContentService.get(project, directory, solutionDto)
         }
         resultFile.writeText(content)
         return resultFile
     }
 
-    private fun getOrCreateDirectory(directory: VirtualFile, solution: Solution): VirtualFile? {
+    private fun getOrCreateDirectory(directory: VirtualFile, solutionDto: SolutionDto): VirtualFile? {
         return if (settings.useFolder) {
-            val directoryName = solution.getDirectoryName()
+            val directoryName = solutionDto.directoryName
             val existingDirectory = directory.findChild(directoryName)
             if (existingDirectory != null) {
                 Messages.showErrorDialog("해당 폴더가 이미 존재합니다.\n폴더 이름: $directoryName", "에러")

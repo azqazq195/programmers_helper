@@ -6,9 +6,9 @@ import com.moseoh.programmers_helper.solution.model.Solution
 
 interface ContentService {
     fun getContent(project: Project, directory: VirtualFile, solution: Solution): String
-    fun getPackage(project: Project, directory: VirtualFile): String
+    fun getPackage(projectPath: String, directoryPath: String): String
     fun getMain(solution: Solution): String
     fun getMainContent(solution: Solution): String
-    fun convertValue(value: Any): String
+    fun value(value: Any): String
     fun getClass(solution: Solution): String
 }

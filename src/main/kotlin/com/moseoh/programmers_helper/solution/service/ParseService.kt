@@ -8,8 +8,9 @@ import org.jsoup.nodes.Document
 
 
 @Service
-class ParseService {
-    private val settings = ProgrammersHelperSettings.instance
+class ParseService(
+    private val settings: ProgrammersHelperSettings = ProgrammersHelperSettings.instance
+) {
 
     fun getUrl(urlInput: String): String {
         val sb = StringBuilder()

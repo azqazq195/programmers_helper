@@ -12,6 +12,7 @@ import com.intellij.openapi.vfs.LocalFileSystem
 import com.intellij.openapi.vfs.VirtualFile
 import com.moseoh.programmers_helper.settings.model.ProgrammersHelperSettings
 import com.moseoh.programmers_helper.solution.model.Solution
+import com.moseoh.programmers_helper.solution.model.dto.SolutionDto
 import com.moseoh.programmers_helper.solution.service.ParseService
 import com.moseoh.programmers_helper.solution.service.SolutionService
 import org.jsoup.HttpStatusException
@@ -28,7 +29,8 @@ class ParseSolutionAction : AnAction() {
         val project = event.project ?: return
         val directory = getDirectory(event) ?: return
         val solution = getSolution(event) ?: return
-        val file = solutionService.createFile(project, directory, solution) ?: return
+        val solutionDto = SolutionDto.of(solution)
+        val file = solutionService.createFile(project, directory, solutionDto) ?: return
         val virtualFile = LocalFileSystem.getInstance().refreshAndFindFileByIoFile(file)
         virtualFile?.let {
             FileEditorManager.getInstance(project).openTextEditor(OpenFileDescriptor(project, virtualFile), true)

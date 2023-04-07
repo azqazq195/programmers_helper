@@ -26,8 +26,7 @@ class LanguageConfigurable : Configurable {
                 cell(languageComboBox).comment("지원 언어<br> - Java<br> - Kotlin")
             }
             row("복사 모드:") {
-                cell(useClipboardCheckBox)
-//                    .comment("url 입력창 스킵하고 클립보드에 복사되어있는 값으로 대체합니다.")
+                cell(useClipboardCheckBox).comment("url 입력창 스킵하고 클립보드에 복사되어있는 값으로 대체합니다.")
             }
             row("생성 모드:") {
                 cell(useFolderCheckBox).comment("폴더[문제_제목] > 파일[Solution]<br>파일[문제_제목]")
@@ -36,8 +35,7 @@ class LanguageConfigurable : Configurable {
                 cell(useNameSpacingCheckBox).comment("문제_제목<br>문제제목")
             }
             row("main 함수 생성:") {
-                cell(useMainFunctionCheckbox)
-//                    .comment("문제_제목<br>문제제목")
+                cell(useMainFunctionCheckbox).comment("실행 함수를 함께 생성합니다.")
             }
             row {
                 link("Github") { BrowserUtil.browse("https://github.com/azqazq195/programmers_helper") }
@@ -61,14 +59,6 @@ class LanguageConfigurable : Configurable {
     @Throws(ConfigurationException::class)
     override fun apply() {
         val selectedLanguage = languageComboBox.selectedItem as Language
-
-//        if (
-//            selectedLanguage == Language.C ||
-//            selectedLanguage == Language.Javascript ||
-//            selectedLanguage == Language.Python
-//        ) {
-//            throw ConfigurationException("현재 지원하지 않는 언어입니다.", "에러")
-//        }
 
         settings.language = selectedLanguage
         settings.useClipboard = useClipboardCheckBox.isSelected
