@@ -10,6 +10,7 @@ import com.moseoh.programmers_helper.settings.model.Language
 import com.moseoh.programmers_helper.settings.model.ProgrammersHelperSettings
 import com.moseoh.programmers_helper.solution.model.dto.SolutionDto
 import com.moseoh.programmers_helper.solution.service.java.JavaContentService
+import com.moseoh.programmers_helper.solution.service.kotlin.KotlinContentService
 import java.io.File
 import java.io.IOException
 
@@ -23,10 +24,11 @@ class SolutionService {
         val directory = getOrCreateDirectory(parentDirectory, solutionDto) ?: return null
         val resultFile = File(directory.path, solutionDto.fileName)
         val content = when (settings.language) {
-            Language.Kotlin -> kotlinContentService.getContent(project, directory, solutionDto)
+            Language.Kotlin -> kotlinContentService.get(project, directory, solutionDto)
             Language.Java -> javaContentService.get(project, directory, solutionDto)
-        }
+        }.replace("\n", System.lineSeparator())
         resultFile.writeText(content)
+        println(content)
         return resultFile
     }
 
