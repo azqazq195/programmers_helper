@@ -10,17 +10,17 @@ import org.junit.Test
 import org.junit.jupiter.api.Assertions.assertEquals
 
 class JavaContentServiceTest {
-    private lateinit var javaContentService: ContentService
+    private lateinit var javaContentService: JavaContentService
 
     @Before
     fun setUp() {
-        val packageContentService = mockk<PackageContentService>()
-        val classContentService = mockk<ClassContentService>()
+        val packageContentService = mockk<JavaPackageContentService>()
+        val classContentService = mockk<JavaClassContentService>()
         every {
             packageContentService.get(any(), any())
         } returns "package 프로젝트 경로"
         every { classContentService.get(any()) } returns "class 클래스 내용"
-        javaContentService = ContentService(packageContentService, classContentService)
+        javaContentService = JavaContentService(packageContentService, classContentService)
     }
 
     @Test

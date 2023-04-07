@@ -8,13 +8,13 @@ import org.junit.Test
 import org.junit.jupiter.api.Assertions.assertEquals
 
 
-class MainContentServiceTest {
-    private lateinit var mainContentService: MainContentService
+class JavaMainContentServiceTest {
+    private lateinit var mainContentService: JavaMainContentService
     private val solutionDto = mockk<SolutionDto>()
 
     @Before
     fun setUp() {
-        mainContentService = MainContentService()
+        mainContentService = JavaMainContentService()
     }
 
     @Test

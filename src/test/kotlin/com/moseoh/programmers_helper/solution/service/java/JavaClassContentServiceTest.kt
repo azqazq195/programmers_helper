@@ -10,10 +10,10 @@ import org.junit.Test
 import org.junit.jupiter.api.Assertions.assertEquals
 
 
-class ClassContentServiceTest {
-    private lateinit var classContentService: ClassContentService
+class JavaClassContentServiceTest {
+    private lateinit var classContentService: JavaClassContentService
     private val solutionDto = mockk<SolutionDto>()
-    private val mainContentService = mockk<MainContentService>()
+    private val mainContentService = mockk<JavaMainContentService>()
     private val mainContent = """
         public static void main(String[] args) {
             내용
@@ -39,7 +39,7 @@ class ClassContentServiceTest {
         mockkObject(ProgrammersHelperSettings.Companion)
         every { ProgrammersHelperSettings.instance } returns ProgrammersHelperSettings()
         every { ProgrammersHelperSettings.instance.useMainFunction } returns true
-        classContentService = ClassContentService(ProgrammersHelperSettings.instance, mainContentService)
+        classContentService = JavaClassContentService(ProgrammersHelperSettings.instance, mainContentService)
 
         // when
         val classContent = classContentService.get(solutionDto)
@@ -65,7 +65,7 @@ class ClassContentServiceTest {
         mockkObject(ProgrammersHelperSettings.Companion)
         every { ProgrammersHelperSettings.instance } returns ProgrammersHelperSettings()
         every { ProgrammersHelperSettings.instance.useMainFunction } returns false
-        classContentService = ClassContentService(ProgrammersHelperSettings.instance, mainContentService)
+        classContentService = JavaClassContentService(ProgrammersHelperSettings.instance, mainContentService)
 
         // when
         val classContent = classContentService.get(solutionDto)

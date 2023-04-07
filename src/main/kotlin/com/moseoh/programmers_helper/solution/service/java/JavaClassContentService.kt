@@ -5,9 +5,9 @@ import com.moseoh.programmers_helper.settings.model.ProgrammersHelperSettings
 import com.moseoh.programmers_helper.solution.model.dto.SolutionDto
 import com.moseoh.programmers_helper.solution.service.impl.IClassContentService
 
-class ClassContentService(
+class JavaClassContentService(
     private val settings: ProgrammersHelperSettings = ProgrammersHelperSettings.instance,
-    private val mainContentService: MainContentService = service<MainContentService>()
+    private val mainContentService: JavaMainContentService = service<JavaMainContentService>()
 ) : IClassContentService {
     override fun get(solution: SolutionDto): String {
         if (!settings.useMainFunction) {

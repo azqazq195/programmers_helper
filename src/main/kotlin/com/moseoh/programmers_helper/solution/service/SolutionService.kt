@@ -9,7 +9,7 @@ import com.intellij.openapi.vfs.VirtualFile
 import com.moseoh.programmers_helper.settings.model.Language
 import com.moseoh.programmers_helper.settings.model.ProgrammersHelperSettings
 import com.moseoh.programmers_helper.solution.model.dto.SolutionDto
-import com.moseoh.programmers_helper.solution.service.java.ContentService
+import com.moseoh.programmers_helper.solution.service.java.JavaContentService
 import java.io.File
 import java.io.IOException
 
@@ -17,7 +17,7 @@ import java.io.IOException
 class SolutionService {
     private val settings = ProgrammersHelperSettings.instance
     private val kotlinContentService = service<KotlinContentService>()
-    private val javaContentService = service<ContentService>()
+    private val javaContentService = service<JavaContentService>()
 
     fun createFile(project: Project, parentDirectory: VirtualFile, solutionDto: SolutionDto): File? {
         val directory = getOrCreateDirectory(parentDirectory, solutionDto) ?: return null

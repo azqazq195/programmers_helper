@@ -6,7 +6,7 @@ import com.moseoh.programmers_helper.solution.model.dto.SolutionDto
 import com.moseoh.programmers_helper.solution.model.dto.TestCaseDto
 import com.moseoh.programmers_helper.solution.service.impl.IMainContentService
 
-class MainContentService : IMainContentService {
+class JavaMainContentService : IMainContentService {
     companion object {
         val MAIN_TEMPLATE = """
             public static void main(String[] args) {
