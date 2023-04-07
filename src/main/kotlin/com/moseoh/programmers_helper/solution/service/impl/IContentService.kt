@@ -6,5 +6,4 @@ import com.moseoh.programmers_helper.solution.model.dto.SolutionDto
 
 interface IContentService {
     fun get(project: Project, directory: VirtualFile, solution: SolutionDto): String
-    fun importContent(): String
 }

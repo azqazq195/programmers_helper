@@ -9,6 +9,4 @@ interface IMainContentService {
     fun valueContents(index: Int, solutionDto: SolutionDto, testCase: TestCaseDto): String
     fun printlnContent(index: Int, testCase: TestCaseDto): String
     fun assertionContent(index: Int, testCase: TestCaseDto): String
-    fun valueType(value: Any): String
-    fun value(value: Any): String
 }
