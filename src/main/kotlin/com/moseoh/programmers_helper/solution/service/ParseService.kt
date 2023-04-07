@@ -41,9 +41,9 @@ class ParseService(
     }
 
     private fun parseTestCase(document: Document): Array<TestCase> {
-        val desiredTitle = "입출력 예"
         val h5Element =
-            document.select("h5:containsOwn($desiredTitle), h5:has(strong:containsOwn($desiredTitle))").first()
+            document.select("h5:containsOwn(입출력 예), h5:has(strong:containsOwn(입출력 예))").first()
+                ?: document.select("h3:containsOwn(입출력 예제), h3:has(strong:containsOwn(입출력 예제))").first()
         val tableElement = h5Element!!.nextElementSibling()
 
 
@@ -63,7 +63,6 @@ class ParseService(
             val result = parseValue(columnValues.last()!!.text())
             TestCase(values, result)
         }.toTypedArray()
-
     }
 
     private fun parseValue(value: String): Any {
