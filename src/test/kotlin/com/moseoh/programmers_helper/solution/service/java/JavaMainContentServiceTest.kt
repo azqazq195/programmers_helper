@@ -27,7 +27,7 @@ class JavaMainContentServiceTest {
             """
                 public static void main(String[] args) {
                 	int number1 = 2;
-                	long ll1 = 2;
+                	long ll1 = 2L;
                 	String string1 = "string";
                 	int[] intArray1 = new int[]{1, 2, 3};
                 	String[] array1 = new String[]{"a", "b", "c"};
@@ -38,7 +38,7 @@ class JavaMainContentServiceTest {
                 	System.out.println(result1 == answer1 ? "정답" : "오답");
 
                 	int number2 = 5;
-                	long ll2 = 5;
+                	long ll2 = 5L;
                 	String string2 = "example";
                 	int[] intArray2 = new int[]{5, 6, 8};
                 	String[] array2 = new String[]{"E", "d", "A"};
@@ -49,7 +49,7 @@ class JavaMainContentServiceTest {
                 	System.out.println(Arrays.equals(result2, answer2) ? "정답" : "오답");
 
                 	int number3 = 5;
-                	long ll3 = 5;
+                	long ll3 = 5L;
                 	String string3 = "example";
                 	int[] intArray3 = new int[]{5, 6, 8};
                 	String[] array3 = new String[]{"E", "d", "A"};
