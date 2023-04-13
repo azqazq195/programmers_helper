@@ -38,21 +38,8 @@
     -->
 
     <change-notes><![CDATA[
-        <h3>Version 0.0.4</h3>
         <ul>
-          <li>Bug fixed</li>
-        </ul>
-        <h3>Version 0.0.3</h3>
-        <ul>
-          <li>Bug fixed</li>
-        </ul>
-        <h3>Version 0.0.2</h3>
-        <ul>
-          <li>Logo Added</li>
-        </ul>
-        <h3>Version 0.0.1</h3>
-        <ul>
-          <li>Launching</li
+          <li>Logo changed</li>
         </ul>
     ]]>
     </change-notes>
