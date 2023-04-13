@@ -1,0 +1,20 @@
+name: 'Cache Gradle Dependencies'
+description: 'Cache Gradle dependencies and wrapper for faster builds'
+
+inputs:
+  cache-key-prefix:
+    description: 'Cache key prefix'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Cache Gradle dependencies
+      uses: actions/cache@v2
+      with:
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+        key: ${{ runner.os }}-${{ inputs.cache-key-prefix }}-${{ hashFiles('**/*.gradle.kts') }}
+        restore-keys: |
+          ${{ runner.os }}-${{ inputs.cache-key-prefix }}-
