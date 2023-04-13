@@ -18,6 +18,11 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
 
+      - name: Cache Gradle dependencies
+        uses: ./.github/actions/cache-gradle
+        with:
+          cache-key-prefix: gradle
+
       - name: Build and run tests
         run: ./gradlew build
 
@@ -33,6 +38,11 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
+
+      - name: Cache Gradle dependencies
+        uses: ./.github/actions/cache-gradle
+        with:
+          cache-key-prefix: gradle
 
       - name: Build plugin
         run: ./gradlew buildPlugin
@@ -66,5 +76,5 @@ jobs:
       - name: Publish plugin to IntelliJ Marketplace
         run: ./gradlew publishPlugin
         env:
-          ORG_GRADLE_PROJECT_intellijPublishToken: ${{ secrets.INTELLIJ_PUBLISH_TOKEN }}
-          ORG_GRADLE_PROJECT_intellijPublishChannel: ${{ secrets.INTELLIJ_PUBLISH_CHANNEL }}
+          INTELLIJ_PUBLISH_TOKEN: ${{ secrets.INTELLIJ_PUBLISH_TOKEN }}
+          INTELLIJ_PUBLISH_CHANNEL: ${{ secrets.INTELLIJ_PUBLISH_CHANNEL }}
