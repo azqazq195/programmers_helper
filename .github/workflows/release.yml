@@ -40,7 +40,7 @@ jobs:
       - name: Extract version from build.gradle
         id: get_version
         run: |
-          echo "VERSION=$(grep '^version' build.gradle | awk -F"'" '{print $2}')" >> $GITHUB_ENV
+          echo "VERSION=$(grep '^version' build.gradle.kts | awk -F"'" '{print $2}')" >> $GITHUB_ENV
 
       - name: Create GitHub release
         id: create_release

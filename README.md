@@ -7,13 +7,15 @@
 <p align="center">Programmers Helper for IntelliJ. Created By moseoh.</p>
 
 <p align="center"> 
-<a href="https://plugins.jetbrains.com/plugin/21278-programmers-helper"><img src="https://img.shields.io/jetbrains/plugin/v/21278-programmers-helper?style=flat-square"></a>
-<a href="https://plugins.jetbrains.com/plugin/21278-programmers-helper"><img src="https://img.shields.io/jetbrains/plugin/r/stars/21278-programmers-helper?style=flat-square"></a>
 <a href="https://plugins.jetbrains.com/plugin/21278-programmers-helper"><img src="https://img.shields.io/jetbrains/plugin/d/21278-programmers-helper?style=flat-square"></a>
+<a href="https://plugins.jetbrains.com/plugin/21278-programmers-helper"><img src="https://img.shields.io/jetbrains/plugin/r/stars/21278-programmers-helper?style=flat-square"></a>
+<a href="https://plugins.jetbrains.com/plugin/21278-programmers-helper"><img src="https://img.shields.io/jetbrains/plugin/v/21278-programmers-helper?style=flat-square"></a>
+<img src="https://img.shields.io/github/actions/workflow/status/azqazq195/programmers_helper/release.yml?branch=master&style=flat-square">
 </p>
 <br>
 
-프로그래머스 도우미는 프로그래머 플랫폼에서 코딩 경험을 간소화하기 위해 설계된 IntelliJ 플러그인입니다. 이 플러그인은 사용자가 프로그래머스 문제 URL을 통해 파일과 예제를 생성하고, 프로그래머 웹사이트에 쉽게 붙여넣을 수 있도록 만들어졌습니다.
+프로그래머스 도우미는 프로그래머 플랫폼에서 코딩 경험을 간소화하기 위해 설계된 IntelliJ 플러그인입니다. 이 플러그인은 사용자가 프로그래머스 문제 URL을 통해 파일과 예제를 생성하고, 프로그래머 웹사이트에
+쉽게 붙여넣을 수 있도록 만들어졌습니다.
 
 ## 설치 및 사용법
 
@@ -29,7 +31,6 @@
 ### 문제 복사
 
 [2.webm](https://user-images.githubusercontent.com/45132207/230555224-5f5ac305-a449-4f65-a8f4-56e398b759ee.webm)
-
 
 - 문제풀이를 완료 한 후 `cmd shift w` 를 입력합니다.
 - 프로그래머스 답안지에 붙여넣기 합니다.
