@@ -76,5 +76,5 @@ jobs:
       - name: Publish plugin to IntelliJ Marketplace
         run: ./gradlew publishPlugin
         env:
-          ORG_GRADLE_PROJECT_intellijPublishToken: ${{ secrets.INTELLIJ_PUBLISH_TOKEN }}
-          ORG_GRADLE_PROJECT_intellijPublishChannel: ${{ secrets.INTELLIJ_PUBLISH_CHANNEL }}
+          INTELLIJ_PUBLISH_TOKEN: ${{ secrets.INTELLIJ_PUBLISH_TOKEN }}
+          INTELLIJ_PUBLISH_CHANNEL: ${{ secrets.INTELLIJ_PUBLISH_CHANNEL }}
