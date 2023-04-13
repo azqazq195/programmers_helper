@@ -1,0 +1,70 @@
+name: CI/CD, Release Workflow
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+
+      - name: Build and run tests
+        run: ./gradlew build
+
+  build_plugin_and_release_and_publish:
+    needs: build_and_test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+
+      - name: Build plugin
+        run: ./gradlew buildPlugin
+
+      - name: Extract version from build.gradle
+        id: get_version
+        run: |
+          echo "VERSION=$(grep '^version' build.gradle | awk -F"'" '{print $2}')" >> $GITHUB_ENV
+
+      - name: Create GitHub release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ env.VERSION }}
+          release_name: Release v${{ env.VERSION }}
+          draft: false
+          prerelease: false
+
+      - name: Upload plugin to release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./build/libs/programmers_helper-${{ env.VERSION }}.jar
+          asset_name: programmers_helper-${{ env.VERSION }}.jar
+          asset_content_type: application/java-archive
+
+      - name: Publish plugin to IntelliJ Marketplace
+        run: ./gradlew publishPlugin
+        env:
+          ORG_GRADLE_PROJECT_intellijPublishToken: ${{ secrets.INTELLIJ_PUBLISH_TOKEN }}
+          ORG_GRADLE_PROJECT_intellijPublishChannel: ${{ secrets.INTELLIJ_PUBLISH_CHANNEL }}
