@@ -40,7 +40,7 @@ jobs:
       - name: Extract version from build.gradle
         id: get_version
         run: |
-          echo "VERSION=$(grep '^version' build.gradle.kts | awk -F'\"' '{print $2}')" >> $GITHUB_ENV
+          echo "VERSION=$(grep '^version' build.gradle.kts | awk -F"'" '{print $2}')" >> $GITHUB_ENV
 
       - name: Create GitHub release
         id: create_release
@@ -66,5 +66,5 @@ jobs:
       - name: Publish plugin to IntelliJ Marketplace
         run: ./gradlew publishPlugin
         env:
-          INTELLIJ_PUBLISH_TOKEN: ${{ secrets.INTELLIJ_PUBLISH_TOKEN }}
-          INTELLIJ_PUBLISH_CHANNEL: ${{ secrets.INTELLIJ_PUBLISH_CHANNEL }}
+          ORG_GRADLE_PROJECT_intellijPublishToken: ${{ secrets.INTELLIJ_PUBLISH_TOKEN }}
+          ORG_GRADLE_PROJECT_intellijPublishChannel: ${{ secrets.INTELLIJ_PUBLISH_CHANNEL }}
