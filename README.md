@@ -7,9 +7,9 @@
 <p align="center">Programmers Helper for IntelliJ. Created By moseoh.</p>
 
 <p align="center"> 
-<a href="https://plugins.jetbrains.com/plugin/21278-programmers-helper"><img src="https://img.shields.io/jetbrains/plugin/d/:21278-programmers-helper"></a>
-<a href="https://plugins.jetbrains.com/plugin/21278-programmers-helper"><img src="https://img.shields.io/jetbrains/plugin/r/rating/:21278-programmers-helper"></a>
-<a href="https://plugins.jetbrains.com/plugin/21278-programmers-helper"><img src="https://img.shields.io/jetbrains/plugin/v/:21278-programmers-helper"></a>
+<a href="https://plugins.jetbrains.com/plugin/21278-programmers-helper"><img src="https://img.shields.io/jetbrains/plugin/v/21278-programmers-helper?style=flat-square"></a>
+<a href="https://plugins.jetbrains.com/plugin/21278-programmers-helper"><img src="https://img.shields.io/jetbrains/plugin/r/stars/21278-programmers-helper?style=flat-square"></a>
+<a href="https://plugins.jetbrains.com/plugin/21278-programmers-helper"><img src="https://img.shields.io/jetbrains/plugin/d/21278-programmers-helper?style=flat-square"></a>
 </p>
 <br>
 
