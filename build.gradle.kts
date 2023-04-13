@@ -48,6 +48,7 @@ tasks {
     }
 
     publishPlugin {
-        token.set(System.getenv("PUBLISH_TOKEN"))
+        token.set(System.getenv("INTELLIJ_PUBLISH_TOKEN"))
+        channels.set(listOf(System.getenv("INTELLIJ_PUBLISH_CHANNEL")))
     }
 }
