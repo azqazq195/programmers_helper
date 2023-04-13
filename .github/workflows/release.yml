@@ -18,6 +18,11 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
 
+      - name: Cache Gradle dependencies
+        uses: ./.github/actions/cache-gradle
+        with:
+          cache-key-prefix: gradle
+
       - name: Build and run tests
         run: ./gradlew build
 
@@ -33,6 +38,11 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
+
+      - name: Cache Gradle dependencies
+        uses: ./.github/actions/cache-gradle
+        with:
+          cache-key-prefix: gradle
 
       - name: Build plugin
         run: ./gradlew buildPlugin
