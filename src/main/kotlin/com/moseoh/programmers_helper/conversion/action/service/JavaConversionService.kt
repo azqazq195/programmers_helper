@@ -6,33 +6,41 @@ import com.moseoh.programmers_helper.conversion.action.service.impl.IConversionS
 @Service
 class JavaConversionService : IConversionService {
     override fun convert(code: String): String {
-        val lines = code.lines()
-        val importLines = lines.filter { it.startsWith("import") }
-        val classStartIndex = lines.indexOfFirst { it.startsWith("public class ") || it.startsWith("class ") }
-        val classEndIndex = lines.indexOfLast { it == "}" }
+        var lines = code.lines()
+        val packageLine = getPackageLineIndex(lines)
+        val mainLine = getMainLineIndex(lines)
 
-        val classLines = mutableListOf<String>()
-        var mainBraceCount = 0
-        var insideMain = false
+        // main 제거
+        if (mainLine != Pair(-1, -1)) {
+            lines = lines.subList(0, mainLine.first) + lines.subList(mainLine.second + 1, lines.size)
+        }
 
-        for (line in lines.subList(classStartIndex, classEndIndex + 1)) {
-            if (line.contains("public static void main")) {
-                insideMain = true
-            }
+        // package 제거
+        if (packageLine != Pair(-1, -1)) {
+            lines = lines.subList(0, packageLine.first) + lines.subList(packageLine.second + 1, lines.size)
+        }
 
-            if (insideMain) {
-                mainBraceCount += line.count { it == '{' } - line.count { it == '}' }
-                if (mainBraceCount == 0) {
-                    insideMain = false
-                }
-            } else {
-                classLines.add(line)
+        return lines.joinToString(separator = "\n").trimIndent()
+    }
+
+    private fun getPackageLineIndex(lines: List<String>): Pair<Int, Int> {
+        val first = lines.indexOfFirst { it.trim().startsWith("package") }
+        val last = lines.indexOfLast { it.trim().startsWith("package") }
+        return if (lines[last + 1].trim() == "") Pair(first, last + 1) else Pair(first, last)
+    }
+
+    private fun getMainLineIndex(lines: List<String>): Pair<Int, Int> {
+        val first = lines.indexOfFirst { it.trim().startsWith("public static void main(") }
+        if (first == -1) return Pair(-1, -1)
+
+        var bracketCount = 0
+        for (i in first until lines.size) {
+            bracketCount += lines[i].count { it == '{' } - lines[i].count { it == '}' }
+            if (bracketCount == 0) {
+                return if (lines[i + 1].trim() == "") Pair(first, i + 1) else Pair(first, i)
             }
         }
 
-        val extractedLines =
-            if (importLines.isEmpty()) importLines + classLines
-            else importLines + listOf("") + classLines
-        return extractedLines.joinToString(separator = "\n")
+        throw RuntimeException("Conversion Error: main method end line not found")
     }
 }
