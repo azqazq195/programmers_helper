@@ -39,7 +39,11 @@
 
     <change-notes><![CDATA[
         <ul>
-          <li>Logo changed</li>
+          <li>Bug Fixed</li>
+          <li>int, long variable recognition</li>
+          <li>Correcting Error Phrase</li>
+          <li>correspond to boolean variables</li>
+          <li>Modifying the output statement</li>
         </ul>
     ]]>
     </change-notes>
