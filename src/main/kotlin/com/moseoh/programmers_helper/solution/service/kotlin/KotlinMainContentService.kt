@@ -109,10 +109,11 @@ class KotlinMainContentService : IMainContentService {
     private fun value(value: Any): String = when (value) {
         is String -> "\"$value\""
         is Char -> "\'$value\'"
-        is Int, is Float, is Double -> value.toString()
+        is Int, is Float, is Double, is Boolean -> value.toString()
         is Long -> "${value}L"
         is Array<*> -> {
             val prefix = when (value.firstOrNull()) {
+                is Boolean -> "booleanArrayOf("
                 is Int -> "intArrayOf("
                 is Long -> "longArrayOf("
                 is Float -> "floatArrayOf("

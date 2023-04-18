@@ -110,6 +110,7 @@ class JavaMainContentService : IMainContentService {
     }
 
     private fun valueType(value: Any): String = when (value) {
+        is Boolean -> "boolean"
         is String -> "String"
         is Char -> "char"
         is Int -> "int"
@@ -123,7 +124,7 @@ class JavaMainContentService : IMainContentService {
     private fun value(value: Any): String = when (value) {
         is String -> "\"$value\""
         is Char -> "\'$value\'"
-        is Int, is Float, is Double -> value.toString()
+        is Int, is Float, is Double, is Boolean -> value.toString()
         is Long -> "${value}L"
         is Array<*> -> {
             val sb = StringBuilder()

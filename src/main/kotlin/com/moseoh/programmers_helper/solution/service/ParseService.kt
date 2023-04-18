@@ -126,6 +126,7 @@ class ParseService(
             value.toLongOrNull() != null -> value.toLong()
             value.toFloatOrNull() != null -> value.toFloat()
             value.toDoubleOrNull() != null -> value.toDouble()
+            value.toBooleanStrictOrNull() != null -> value.toBoolean()
             else -> value
         }
     }
