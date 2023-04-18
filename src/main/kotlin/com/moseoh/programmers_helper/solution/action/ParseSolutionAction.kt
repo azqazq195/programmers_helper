@@ -52,7 +52,10 @@ class ParseSolutionAction : AnAction() {
         } catch (e: Exception) {
             Messages.showErrorDialog(
                 buildString {
-                    append("해당 url 에서 정보를 읽을 수 없습니다.\n\n오래된 문제이거나 기출문제의 경우 html 양식이 달라 읽지 못할 수 있습니다.\n이외의 경우 제보해 주세요.")
+                    append("해당 url 에서 정보를 읽을 수 없습니다.\n")
+                    append("\t- 오래된 문제의 경우 양식이 달라 읽을 수 없음\n")
+                    append("\t- 기출 문제의 경우 양식이 달라 읽을 수 없음\n")
+                    append("이외의 경우 제보해 주세요.")
                 },
                 "에러"
             )

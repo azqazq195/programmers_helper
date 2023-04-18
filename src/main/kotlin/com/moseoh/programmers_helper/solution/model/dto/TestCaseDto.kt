@@ -20,7 +20,7 @@ data class TestCaseDto(
 
 
     fun resultType(): ReturnType = when (answer) {
-        is String, is Char, is Int, is Long, is Double, is Float -> ReturnType.Single
+        is Boolean, is String, is Char, is Int, is Long, is Double, is Float -> ReturnType.Single
         is Array<*> -> {
             if (answer[0] is Array<*>) ReturnType.Array2D
             else ReturnType.Array
