@@ -18,7 +18,6 @@ class JavaMainContentService : IMainContentService {
 
         val MAIN_CONTENT_TEMPLATE = """
             ${'$'}{values}
-            ${'$'}{println}
             ${'$'}{assert}
         """.trimIndent()
 
@@ -26,13 +25,14 @@ class JavaMainContentService : IMainContentService {
             ${'$'}{valueType} ${'$'}{valueName} = ${'$'}{value};
         """.trimIndent()
 
-        val PRINTLN_TEMPLATE = """
-            System.out.println(${'$'}{result});
-        """.trimIndent()
-
         val ASSERTION_TEMPLATE = """
-            System.out.println(${'$'}{comparison} ? "정답" : "오답");
-        """.trimIndent()
+            System.out.printf(
+                    "테스트 케이스 ${'$'}{index}: %s\n" +
+                            "\t- 실행 결과: %s\n" +
+                            "\t- 기댓값: %s\n\n",
+                    ${'$'}{comparison} ? "정답" : "**오답**", ${'$'}{result}, ${'$'}{answer}
+            );
+        """.trimIndent().trimMargin()
     }
 
     override fun get(solutionDto: SolutionDto): String {
@@ -45,9 +45,8 @@ class JavaMainContentService : IMainContentService {
         return solutionDto.testCaseDtos.mapIndexed { index, testCase ->
             val values = hashMapOf<String, String>()
             values["${'$'}{values}"] = valueContents(index, solutionDto, testCase)
-            values["${'$'}{println}"] = printlnContent(index, testCase)
             values["${'$'}{assert}"] = assertionContent(index, testCase)
-            Utils.convert(MAIN_CONTENT_TEMPLATE, values).trimIndent().prependIndent("\t")
+            Utils.convert(MAIN_CONTENT_TEMPLATE, values).trimIndent().prependIndent("    ")
         }.joinToString("\n\n")
     }
 
@@ -83,30 +82,29 @@ class JavaMainContentService : IMainContentService {
             }.joinToString("\n")
     }
 
-
-    override fun printlnContent(index: Int, testCase: TestCaseDto): String {
-        val num = index + 1
-        val value = when (testCase.resultType()) {
-            ReturnType.Single -> "result$num"
-            ReturnType.Array -> "Arrays.toString(result$num)"
-            ReturnType.Array2D -> "Arrays.deepToString(result$num)"
-        }
-        val values = hashMapOf<String, String>()
-        values["${'$'}{result}"] = value
-        return Utils.convert(PRINTLN_TEMPLATE, values)
-    }
-
     override fun assertionContent(index: Int, testCase: TestCaseDto): String {
         val num = index + 1
-        val value = when (testCase.resultType()) {
+        val comparison = when (testCase.resultType()) {
             ReturnType.Single -> "result$num == answer$num"
             ReturnType.Array -> "Arrays.equals(result$num, answer$num)"
             ReturnType.Array2D -> "Arrays.deepEquals(result$num, answer$num)"
         }
 
         val values = hashMapOf<String, String>()
-        values["${'$'}{comparison}"] = value
+        values["${'$'}{comparison}"] = comparison
+        values["${'$'}{index}"] = num.toString()
+        values["${'$'}{result}"] = valueToString(index, testCase, "result")
+        values["${'$'}{answer}"] = valueToString(index, testCase, "answer")
         return Utils.convert(ASSERTION_TEMPLATE, values)
+    }
+
+    private fun valueToString(index: Int, testCase: TestCaseDto, valueName: String): String {
+        val num = index + 1
+        return when (testCase.resultType()) {
+            ReturnType.Single -> "$valueName$num"
+            ReturnType.Array -> "Arrays.toString($valueName$num)"
+            ReturnType.Array2D -> "Arrays.deepToString($valueName$num)"
+        }
     }
 
     private fun valueType(value: Any): String = when (value) {
