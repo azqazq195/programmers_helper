@@ -5,15 +5,6 @@ import com.moseoh.programmers_helper.solution.model.dto.TestCaseDto
 
 class TestData {
     companion object {
-        //        fun solutionDto(): SolutionDto {
-//            val parseService = ParseService(ProgrammersHelperSettings())
-//            val url = "https://school.programmers.co.kr/learn/courses/30/lessons/12938?language=java"
-//            val document = Jsoup.connect(url).get()
-//            val solution = parseService.parseHtml(document)
-//            val solutionDto = SolutionDto.of(solution)
-//            println(solutionDto)
-//            return SolutionDto.of(solution)
-//        }
         fun solutionDto(): SolutionDto {
             return SolutionDto(
                 "최고의집합",
