@@ -85,7 +85,14 @@ class JavaMainContentService : IMainContentService {
     override fun assertionContent(index: Int, testCase: TestCaseDto): String {
         val num = index + 1
         val comparison = when (testCase.resultType()) {
-            ReturnType.Single -> "result$num == answer$num"
+            ReturnType.Single -> {
+                if (testCase.answer is String) {
+                    "result$num.equals(answer$num)"
+                } else {
+                    "result$num == answer$num"
+                }
+            }
+
             ReturnType.Array -> "Arrays.equals(result$num, answer$num)"
             ReturnType.Array2D -> "Arrays.deepEquals(result$num, answer$num)"
         }
