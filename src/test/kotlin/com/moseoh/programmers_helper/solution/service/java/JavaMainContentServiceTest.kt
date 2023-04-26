@@ -70,6 +70,21 @@ class JavaMainContentServiceTest {
                                     "\t- 기댓값: %s\n\n",
                             Arrays.deepEquals(result3, answer3) ? "정답" : "**오답**", Arrays.deepToString(result3), Arrays.deepToString(answer3)
                     );
+
+                    int number4 = 5;
+                    long ll4 = 5L;
+                    String string4 = "example";
+                    int[] intArray4 = new int[]{5, 6, 8};
+                    String[] array4 = new String[]{"E", "d", "A"};
+                    int[][] arrayIntArray4 = new int[][]{new int[]{11, 55}, new int[]{4, 3}};
+                    String answer4 = "answer";
+                    String result4 = new Solution().solution(number4, ll4, string4, intArray4, array4, arrayIntArray4);
+                    System.out.printf(
+                            "테스트 케이스 4: %s\n" +
+                                    "\t- 실행 결과: %s\n" +
+                                    "\t- 기댓값: %s\n\n",
+                            result4.equals(answer4) ? "정답" : "**오답**", result4, answer4
+                    );
                 }
             """.trimIndent(), content
         )

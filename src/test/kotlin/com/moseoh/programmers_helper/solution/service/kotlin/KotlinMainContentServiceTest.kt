@@ -66,6 +66,20 @@ class KotlinMainContentServiceTest {
                                 "\t- 실행 결과: ${'$'}{result3.contentDeepToString()}\n" +
                                 "\t- 기댓값: ${'$'}{answer3.contentDeepToString()}\n"
                     }
+
+                    val number4 = 5
+                    val ll4 = 5L
+                    val string4 = "example"
+                    val intArray4 = intArrayOf(5, 6, 8)
+                    val array4 = arrayOf("E", "d", "A")
+                    val arrayIntArray4 = arrayOf(intArrayOf(11, 55), intArrayOf(4, 3))
+                    val answer4 = "answer"
+                    val result4 = Solution().solution(number4, ll4, string4, intArray4, array4, arrayIntArray4)
+                    check(result4 == answer4) {
+                        "\n\n테스트 케이스 4\n" +
+                                "\t- 실행 결과: ${'$'}result4\n" +
+                                "\t- 기댓값: ${'$'}answer4\n"
+                    }
                 }
             """.trimIndent(), content
         )

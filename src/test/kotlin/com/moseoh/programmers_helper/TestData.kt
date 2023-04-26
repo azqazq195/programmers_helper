@@ -72,7 +72,24 @@ class TestData {
                             intArrayOf(11, 55).toTypedArray(),
                             intArrayOf(4, 3).toTypedArray()
                         )
-                    )
+                    ),
+                    TestCaseDto(
+                        mapOf(
+                            Pair("number", 5),
+                            Pair("ll", 5L),
+                            Pair("string", "example"),
+                            Pair("intArray", intArrayOf(5, 6, 8).toTypedArray()),
+                            Pair("array", arrayOf("E", "d", "A")),
+                            Pair(
+                                "arrayIntArray",
+                                arrayOf(
+                                    intArrayOf(11, 55).toTypedArray(),
+                                    intArrayOf(4, 3).toTypedArray()
+                                )
+                            )
+                        ),
+                        "answer"
+                    ),
                 )
             )
         }
