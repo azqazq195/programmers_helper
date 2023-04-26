@@ -3,7 +3,7 @@ name: CI/CD, Release Workflow
 on:
   push:
     branches:
-      - master
+      - release
 
 jobs:
   build_and_test:
