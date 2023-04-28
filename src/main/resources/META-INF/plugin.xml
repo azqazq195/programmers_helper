@@ -68,25 +68,17 @@
     </extensions>
 
     <actions>
-        <group id="com.moseoh.programmers_helper"
-               text="Programmers Helper"
-               popup="true"
-               icon="AllIcons.CodeWithMe.CwmPermissionEdit">
-            <add-to-group group-id="ToolsMenu" anchor="first"/>
-            <action id="com.moseoh.code conversion"
-                    class="com.moseoh.programmers_helper.conversion.action.CodeConversionAction"
-                    text="Convert Code"
-                    description="Convert code to programmers format">
-                <keyboard-shortcut keymap="$default" first-keystroke="ctrl shift W"/>
-                <keyboard-shortcut keymap="Mac OS X" first-keystroke="meta shift W"/>
-            </action>
-            <action id="CodeConversion.ParseTestCasesAction"
-                    class="com.moseoh.programmers_helper.solution.action.ParseSolutionAction"
-                    text="Parse Test Cases from URL"
-                    description="Parse test cases from the given URL">
-                <keyboard-shortcut keymap="$default" first-keystroke="ctrl shift P"/>
-                <keyboard-shortcut keymap="Mac OS X" first-keystroke="meta shift P"/>
-            </action>
-        </group>
+        <action id="programmers.helper.copyAnswerSheet"
+                class="com.moseoh.programmers_helper.conversion.action.CodeConversionAction">
+            <add-to-group group-id="CodeMenu" anchor="last"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="ctrl shift W"/>
+            <keyboard-shortcut keymap="Mac OS X" first-keystroke="meta shift W"/>
+        </action>
+        <action id="programmers.helper.importProblem"
+                class="com.moseoh.programmers_helper.solution.action.ParseSolutionAction">
+            <add-to-group group-id="CodeMenu" anchor="last"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="ctrl shift P"/>
+            <keyboard-shortcut keymap="Mac OS X" first-keystroke="meta shift P"/>
+        </action>
     </actions>
 </idea-plugin>
