@@ -1,19 +1,10 @@
 package com.moseoh.programmers_helper
 
-import com.moseoh.programmers_helper.solution.model.dto.SolutionDto
-import com.moseoh.programmers_helper.solution.model.dto.TestCaseDto
+import com.moseoh.programmers_helper.actions.import_problem.model.dto.SolutionDto
+import com.moseoh.programmers_helper.actions.import_problem.model.dto.TestCaseDto
 
 class TestData {
     companion object {
-        //        fun solutionDto(): SolutionDto {
-//            val parseService = ParseService(ProgrammersHelperSettings())
-//            val url = "https://school.programmers.co.kr/learn/courses/30/lessons/12938?language=java"
-//            val document = Jsoup.connect(url).get()
-//            val solution = parseService.parseHtml(document)
-//            val solutionDto = SolutionDto.of(solution)
-//            println(solutionDto)
-//            return SolutionDto.of(solution)
-//        }
         fun solutionDto(): SolutionDto {
             return SolutionDto(
                 "최고의집합",
@@ -81,7 +72,24 @@ class TestData {
                             intArrayOf(11, 55).toTypedArray(),
                             intArrayOf(4, 3).toTypedArray()
                         )
-                    )
+                    ),
+                    TestCaseDto(
+                        mapOf(
+                            Pair("number", 5),
+                            Pair("ll", 5L),
+                            Pair("string", "example"),
+                            Pair("intArray", intArrayOf(5, 6, 8).toTypedArray()),
+                            Pair("array", arrayOf("E", "d", "A")),
+                            Pair(
+                                "arrayIntArray",
+                                arrayOf(
+                                    intArrayOf(11, 55).toTypedArray(),
+                                    intArrayOf(4, 3).toTypedArray()
+                                )
+                            )
+                        ),
+                        "answer"
+                    ),
                 )
             )
         }
