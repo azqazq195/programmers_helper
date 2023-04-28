@@ -7,7 +7,8 @@ import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
 import com.intellij.openapi.components.service
-import com.moseoh.programmers_helper._common.PluginBundle
+import com.moseoh.programmers_helper._common.PluginBundle.get
+import com.moseoh.programmers_helper._common.PluginBundle.lazy
 import com.moseoh.programmers_helper.actions.copy_answer.service.JavaCopyAnswerService
 import com.moseoh.programmers_helper.actions.copy_answer.service.KotlinCopyAnswerService
 import com.moseoh.programmers_helper.settings.model.Language
@@ -18,8 +19,8 @@ import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
 class CopyAnswerAction : AnAction(
-    PluginBundle.lazy("copyAnswerSheet"),
-    PluginBundle.lazy("copyAnswerSheetDescription"),
+    lazy("copyAnswer"),
+    lazy("copyAnswerDescription"),
     null
 ) {
     private val settings = ProgrammersHelperSettings.instance
@@ -44,8 +45,8 @@ class CopyAnswerAction : AnAction(
             // 복사 완료 알람
             val notification = Notification(
                 "Programmers Helper.Notification",
-                "클립보드 복사 완료.",
-                "이제 프로그래머스 답안지에 붙여넣기 하세요.",
+                get("copyAnswerNotificationTitle"),
+                get("copyAnswerNotificationContent"),
                 NotificationType.INFORMATION
             )
             Notifications.Bus.notify(notification, project)
