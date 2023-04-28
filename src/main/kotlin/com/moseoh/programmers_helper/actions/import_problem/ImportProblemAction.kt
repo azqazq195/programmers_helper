@@ -10,6 +10,7 @@ import com.intellij.openapi.ui.InputValidatorEx
 import com.intellij.openapi.ui.Messages
 import com.intellij.openapi.vfs.LocalFileSystem
 import com.intellij.openapi.vfs.VirtualFile
+import com.moseoh.programmers_helper._common.PluginBundle
 import com.moseoh.programmers_helper.actions.import_problem.model.Solution
 import com.moseoh.programmers_helper.actions.import_problem.model.dto.SolutionDto
 import com.moseoh.programmers_helper.actions.import_problem.service.ParseService
@@ -22,7 +23,9 @@ import java.awt.datatransfer.DataFlavor
 
 
 class ImportProblemAction : AnAction(
-    "Import Problem"
+    PluginBundle.lazy("importProblem"),
+    PluginBundle.lazy("importProblemDescription"),
+    null
 ) {
     private val parseService = service<ParseService>()
     private val solutionService = service<SolutionService>()

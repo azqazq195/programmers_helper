@@ -7,8 +7,9 @@ import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
 import com.intellij.openapi.components.service
-import com.moseoh.programmers_helper.actions.copy_answer_sheet.service.JavaConversionService
-import com.moseoh.programmers_helper.actions.copy_answer_sheet.service.KotlinConversionService
+import com.moseoh.programmers_helper._common.PluginBundle
+import com.moseoh.programmers_helper.actions.copy_answer_sheet.service.JavaCopyAnswerService
+import com.moseoh.programmers_helper.actions.copy_answer_sheet.service.KotlinCopyAnswerService
 import com.moseoh.programmers_helper.settings.model.Language
 import com.moseoh.programmers_helper.settings.model.ProgrammersHelperSettings
 import java.awt.Toolkit
@@ -16,12 +17,14 @@ import java.awt.datatransfer.StringSelection
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
-class CopyAnswerSheetAction : AnAction(
-    "Copy Answer Sheet"
+class CopyAnswerAction : AnAction(
+    PluginBundle.lazy("copyAnswerSheet"),
+    PluginBundle.lazy("copyAnswerSheetDescription"),
+    null
 ) {
     private val settings = ProgrammersHelperSettings.instance
-    private val javaConversionService = service<JavaConversionService>()
-    private val kotlinConversionService = service<KotlinConversionService>()
+    private val javaCopyAnswerService = service<JavaCopyAnswerService>()
+    private val kotlinCopyAnswerService = service<KotlinCopyAnswerService>()
 
     override fun actionPerformed(event: AnActionEvent) {
         val project = event.project
@@ -55,8 +58,8 @@ class CopyAnswerSheetAction : AnAction(
     }
 
     private fun convert(inputCode: String): String = when (settings.language) {
-        Language.Kotlin -> kotlinConversionService.convert(inputCode)
-        Language.Java -> javaConversionService.convert(inputCode)
+        Language.Kotlin -> kotlinCopyAnswerService.convert(inputCode)
+        Language.Java -> javaCopyAnswerService.convert(inputCode)
     }
 
 }
