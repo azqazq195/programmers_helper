@@ -5,7 +5,7 @@
 
     <!-- Public plugin name should be written in Title Case.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
-    <name>Programmers_helper</name>
+    <name>Programmers Helper</name>
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
     <vendor email="azqazq195@gmail.com" url="https://github.com/azqazq195">moseoh</vendor>
@@ -38,12 +38,9 @@
     -->
 
     <change-notes><![CDATA[
+        <h2>New Features</h2>
         <ul>
-          <li>Bug Fixed</li>
-          <li>int, long variable recognition</li>
-          <li>Correcting Error Phrase</li>
-          <li>correspond to boolean variables</li>
-          <li>Modifying the output statement</li>
+          <li>Localization(en, ko)</li>
         </ul>
     ]]>
     </change-notes>
@@ -60,7 +57,6 @@
                 parentId="tools"
                 id="com.moseoh.programmers_helper.settings.ui.LanguageConfigurable"
                 instance="com.moseoh.programmers_helper.settings.ui.LanguageConfigurable"
-                displayName="Programmers Helper"
         />
 
         <applicationService
@@ -68,25 +64,17 @@
     </extensions>
 
     <actions>
-        <group id="com.moseoh.programmers_helper"
-               text="Programmers Helper"
-               popup="true"
-               icon="AllIcons.CodeWithMe.CwmPermissionEdit">
-            <add-to-group group-id="ToolsMenu" anchor="first"/>
-            <action id="com.moseoh.code conversion"
-                    class="com.moseoh.programmers_helper.conversion.action.CodeConversionAction"
-                    text="Convert Code"
-                    description="Convert code to programmers format">
-                <keyboard-shortcut keymap="$default" first-keystroke="ctrl shift W"/>
-                <keyboard-shortcut keymap="Mac OS X" first-keystroke="meta shift W"/>
-            </action>
-            <action id="CodeConversion.ParseTestCasesAction"
-                    class="com.moseoh.programmers_helper.solution.action.ParseSolutionAction"
-                    text="Parse Test Cases from URL"
-                    description="Parse test cases from the given URL">
-                <keyboard-shortcut keymap="$default" first-keystroke="ctrl shift P"/>
-                <keyboard-shortcut keymap="Mac OS X" first-keystroke="meta shift P"/>
-            </action>
-        </group>
+        <action id="programmers.helper.importProblem"
+                class="com.moseoh.programmers_helper.actions.import_problem.ImportProblemAction">
+            <add-to-group group-id="CodeMenu" anchor="last"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="ctrl shift P"/>
+            <keyboard-shortcut keymap="Mac OS X" first-keystroke="meta shift P"/>
+        </action>
+        <action id="programmers.helper.copyAnswerSheet"
+                class="com.moseoh.programmers_helper.actions.copy_answer.CopyAnswerAction">
+            <add-to-group group-id="CodeMenu" anchor="last"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="ctrl shift W"/>
+            <keyboard-shortcut keymap="Mac OS X" first-keystroke="meta shift W"/>
+        </action>
     </actions>
 </idea-plugin>
