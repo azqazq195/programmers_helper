@@ -38,12 +38,9 @@
     -->
 
     <change-notes><![CDATA[
+        <h2>New Features</h2>
         <ul>
-          <li>Bug Fixed</li>
-          <li>int, long variable recognition</li>
-          <li>Correcting Error Phrase</li>
-          <li>correspond to boolean variables</li>
-          <li>Modifying the output statement</li>
+          <li>Localization(en, ko)</li>
         </ul>
     ]]>
     </change-notes>
