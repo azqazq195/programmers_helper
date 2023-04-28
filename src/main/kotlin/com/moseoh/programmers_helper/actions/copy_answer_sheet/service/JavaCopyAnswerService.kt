@@ -1,11 +1,10 @@
 package com.moseoh.programmers_helper.actions.copy_answer_sheet.service
 
-
 import com.intellij.openapi.components.Service
-import com.moseoh.programmers_helper.actions.copy_answer_sheet.service.impl.IConversionService
+import com.moseoh.programmers_helper.actions.copy_answer_sheet.service.impl.ICopyAnswerService
 
 @Service
-class KotlinConversionService : IConversionService {
+class JavaCopyAnswerService : ICopyAnswerService {
     override fun convert(code: String): String {
         var lines = code.lines()
         val packageLine = getPackageLineIndex(lines)
@@ -31,7 +30,7 @@ class KotlinConversionService : IConversionService {
     }
 
     private fun getMainLineIndex(lines: List<String>): Pair<Int, Int> {
-        val first = lines.indexOfFirst { it.trim().startsWith("fun main(") }
+        val first = lines.indexOfFirst { it.trim().startsWith("public static void main(") }
         if (first == -1) return Pair(-1, -1)
 
         var bracketCount = 0
