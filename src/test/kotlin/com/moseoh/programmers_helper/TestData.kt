@@ -1,7 +1,7 @@
 package com.moseoh.programmers_helper
 
-import com.moseoh.programmers_helper.solution.model.dto.SolutionDto
-import com.moseoh.programmers_helper.solution.model.dto.TestCaseDto
+import com.moseoh.programmers_helper.actions.import_problem.model.dto.SolutionDto
+import com.moseoh.programmers_helper.actions.import_problem.model.dto.TestCaseDto
 
 class TestData {
     companion object {
