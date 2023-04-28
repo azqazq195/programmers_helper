@@ -60,7 +60,6 @@
                 parentId="tools"
                 id="com.moseoh.programmers_helper.settings.ui.LanguageConfigurable"
                 instance="com.moseoh.programmers_helper.settings.ui.LanguageConfigurable"
-                displayName="Programmers Helper"
         />
 
         <applicationService
