@@ -68,17 +68,17 @@
     </extensions>
 
     <actions>
-        <action id="programmers.helper.copyAnswerSheet"
-                class="com.moseoh.programmers_helper.conversion.action.CodeConversionAction">
-            <add-to-group group-id="CodeMenu" anchor="last"/>
-            <keyboard-shortcut keymap="$default" first-keystroke="ctrl shift W"/>
-            <keyboard-shortcut keymap="Mac OS X" first-keystroke="meta shift W"/>
-        </action>
         <action id="programmers.helper.importProblem"
-                class="com.moseoh.programmers_helper.solution.action.ParseSolutionAction">
+                class="com.moseoh.programmers_helper.actions.import_problem.ImportProblemAction">
             <add-to-group group-id="CodeMenu" anchor="last"/>
             <keyboard-shortcut keymap="$default" first-keystroke="ctrl shift P"/>
             <keyboard-shortcut keymap="Mac OS X" first-keystroke="meta shift P"/>
+        </action>
+        <action id="programmers.helper.copyAnswerSheet"
+                class="com.moseoh.programmers_helper.actions.copy_answer_sheet.CopyAnswerSheetAction">
+            <add-to-group group-id="CodeMenu" anchor="last"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="ctrl shift W"/>
+            <keyboard-shortcut keymap="Mac OS X" first-keystroke="meta shift W"/>
         </action>
     </actions>
 </idea-plugin>
