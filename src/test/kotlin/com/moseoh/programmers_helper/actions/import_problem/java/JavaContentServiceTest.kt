@@ -1,8 +1,11 @@
-package com.moseoh.programmers_helper.solution.service.java
+package com.moseoh.programmers_helper.actions.import_problem.java
 
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.VirtualFile
-import com.moseoh.programmers_helper.solution.model.dto.SolutionDto
+import com.moseoh.programmers_helper.actions.import_problem.model.dto.SolutionDto
+import com.moseoh.programmers_helper.actions.import_problem.service.java.JavaClassContentService
+import com.moseoh.programmers_helper.actions.import_problem.service.java.JavaContentService
+import com.moseoh.programmers_helper.actions.import_problem.service.java.JavaPackageContentService
 import io.mockk.every
 import io.mockk.mockk
 import org.junit.Before

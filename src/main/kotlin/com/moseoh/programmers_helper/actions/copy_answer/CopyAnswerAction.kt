@@ -1,4 +1,4 @@
-package com.moseoh.programmers_helper.actions.copy_answer_sheet
+package com.moseoh.programmers_helper.actions.copy_answer
 
 import com.intellij.notification.Notification
 import com.intellij.notification.NotificationType
@@ -8,8 +8,8 @@ import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
 import com.intellij.openapi.components.service
 import com.moseoh.programmers_helper._common.PluginBundle
-import com.moseoh.programmers_helper.actions.copy_answer_sheet.service.JavaCopyAnswerService
-import com.moseoh.programmers_helper.actions.copy_answer_sheet.service.KotlinCopyAnswerService
+import com.moseoh.programmers_helper.actions.copy_answer.service.JavaCopyAnswerService
+import com.moseoh.programmers_helper.actions.copy_answer.service.KotlinCopyAnswerService
 import com.moseoh.programmers_helper.settings.model.Language
 import com.moseoh.programmers_helper.settings.model.ProgrammersHelperSettings
 import java.awt.Toolkit

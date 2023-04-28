@@ -1,5 +1,6 @@
-package com.moseoh.programmers_helper.solution.service.java
+package com.moseoh.programmers_helper.actions.import_problem.java
 
+import com.moseoh.programmers_helper.actions.import_problem.service.java.JavaPackageContentService
 import org.junit.Test
 import org.junit.jupiter.api.Assertions.assertEquals
 

@@ -1,9 +1,13 @@
-package com.moseoh.programmers_helper.solution.service.kotlin
+package com.moseoh.programmers_helper.actions.import_problem.kotlin
 
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.VirtualFile
+import com.moseoh.programmers_helper.actions.import_problem.model.dto.SolutionDto
+import com.moseoh.programmers_helper.actions.import_problem.service.kotlin.KotlinClassContentService
+import com.moseoh.programmers_helper.actions.import_problem.service.kotlin.KotlinContentService
+import com.moseoh.programmers_helper.actions.import_problem.service.kotlin.KotlinMainContentService
+import com.moseoh.programmers_helper.actions.import_problem.service.kotlin.KotlinPackageContentService
 import com.moseoh.programmers_helper.settings.model.ProgrammersHelperSettings
-import com.moseoh.programmers_helper.solution.model.dto.SolutionDto
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkObject

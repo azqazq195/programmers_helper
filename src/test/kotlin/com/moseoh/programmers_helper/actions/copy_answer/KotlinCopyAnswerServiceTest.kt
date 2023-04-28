@@ -1,16 +1,17 @@
-package com.moseoh.programmers_helper.conversion.action.service
+package com.moseoh.programmers_helper.actions.copy_answer
 
+import com.moseoh.programmers_helper.actions.copy_answer.service.KotlinCopyAnswerService
 import org.junit.jupiter.api.Assertions.assertEquals
 
-class KotlinConversionServiceTest {
+class KotlinCopyAnswerServiceTest {
 
     @org.junit.Test
     fun convert() {
         // given
-        val kotlinConversionService = KotlinConversionService()
+        val kotlinCopyAnswerService = KotlinCopyAnswerService()
 
         // when
-        val actual = kotlinConversionService.convert(code)
+        val actual = kotlinCopyAnswerService.convert(code)
 
         // then
         assertEquals(expected, actual)

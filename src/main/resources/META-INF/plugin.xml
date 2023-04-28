@@ -75,7 +75,7 @@
             <keyboard-shortcut keymap="Mac OS X" first-keystroke="meta shift P"/>
         </action>
         <action id="programmers.helper.copyAnswerSheet"
-                class="com.moseoh.programmers_helper.actions.copy_answer_sheet.CopyAnswerAction">
+                class="com.moseoh.programmers_helper.actions.copy_answer.CopyAnswerAction">
             <add-to-group group-id="CodeMenu" anchor="last"/>
             <keyboard-shortcut keymap="$default" first-keystroke="ctrl shift W"/>
             <keyboard-shortcut keymap="Mac OS X" first-keystroke="meta shift W"/>

@@ -1,6 +1,7 @@
-package com.moseoh.programmers_helper.solution.service.kotlin
+package com.moseoh.programmers_helper.actions.import_problem.kotlin
 
 import com.moseoh.programmers_helper.TestData
+import com.moseoh.programmers_helper.actions.import_problem.service.kotlin.KotlinClassContentService
 import org.junit.Before
 import org.junit.Test
 import org.junit.jupiter.api.Assertions.assertEquals

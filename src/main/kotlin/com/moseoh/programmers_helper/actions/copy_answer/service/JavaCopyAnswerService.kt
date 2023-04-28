@@ -1,7 +1,7 @@
-package com.moseoh.programmers_helper.actions.copy_answer_sheet.service
+package com.moseoh.programmers_helper.actions.copy_answer.service
 
 import com.intellij.openapi.components.Service
-import com.moseoh.programmers_helper.actions.copy_answer_sheet.service.impl.ICopyAnswerService
+import com.moseoh.programmers_helper.actions.copy_answer.service.impl.ICopyAnswerService
 
 @Service
 class JavaCopyAnswerService : ICopyAnswerService {

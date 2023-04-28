@@ -1,7 +1,9 @@
-package com.moseoh.programmers_helper.solution.service.java
+package com.moseoh.programmers_helper.actions.import_problem.java
 
+import com.moseoh.programmers_helper.actions.import_problem.model.dto.SolutionDto
+import com.moseoh.programmers_helper.actions.import_problem.service.java.JavaClassContentService
+import com.moseoh.programmers_helper.actions.import_problem.service.java.JavaMainContentService
 import com.moseoh.programmers_helper.settings.model.ProgrammersHelperSettings
-import com.moseoh.programmers_helper.solution.model.dto.SolutionDto
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkObject
