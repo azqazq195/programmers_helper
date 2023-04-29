@@ -38,7 +38,7 @@ do
 
     BRANCH_NAME="${SUBJECT}"
     echo "${GREEN} > your branch name is '${BRANCH_NAME}'${NC}"
-    echo "${YELLOW} > is it your branch? press 'enter''"
+    echo "${YELLOW} > is it your branch? press 'enter'${NC}"
     read -r  DONE
 done
 
