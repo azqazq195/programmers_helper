@@ -11,7 +11,7 @@ import java.io.File
 import java.io.IOException
 
 @Service
-class SolutionService {
+class FileService {
     private val settings = ProgrammersHelperSettings.instance
 //    private val kotlinContentService = service<KotlinContentService>()
 //    private val javaContentService = service<JavaContentService>()

@@ -12,8 +12,8 @@ import com.intellij.openapi.vfs.LocalFileSystem
 import com.intellij.openapi.vfs.VirtualFile
 import com.moseoh.programmers_helper._common.PluginBundle.lazy
 import com.moseoh.programmers_helper.actions.import_problem.model.Problem
+import com.moseoh.programmers_helper.actions.import_problem.service.FileService
 import com.moseoh.programmers_helper.actions.import_problem.service.ParseService
-import com.moseoh.programmers_helper.actions.import_problem.service.SolutionService
 import com.moseoh.programmers_helper.settings.model.ProgrammersHelperSettings
 import org.jsoup.HttpStatusException
 import org.jsoup.Jsoup
@@ -27,13 +27,13 @@ class ImportProblemAction : AnAction(
     null
 ) {
     private val parseService = service<ParseService>()
-    private val solutionService = service<SolutionService>()
+    private val fileService = service<FileService>()
 
     override fun actionPerformed(event: AnActionEvent) {
         val project = event.project ?: return
         val directory = getDirectory(event) ?: return
         val problem = getProblem(event) ?: return
-        val file = solutionService.createFile(project, directory, problem) ?: return
+        val file = fileService.createFile(project, directory, problem) ?: return
         val virtualFile = LocalFileSystem.getInstance().refreshAndFindFileByIoFile(file)
         virtualFile?.let {
             FileEditorManager.getInstance(project).openTextEditor(OpenFileDescriptor(project, virtualFile), true)
