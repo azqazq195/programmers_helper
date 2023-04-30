@@ -1,8 +1,7 @@
 package com.moseoh.programmers_helper.actions.import_problem.service
 
 import com.intellij.openapi.components.Service
-import com.moseoh.programmers_helper.actions.import_problem.model.Solution
-import com.moseoh.programmers_helper.actions.import_problem.model.TestCase
+import com.moseoh.programmers_helper.actions.import_problem.model.Problem
 import com.moseoh.programmers_helper.settings.model.Language
 import com.moseoh.programmers_helper.settings.model.ProgrammersHelperSettings
 import org.jsoup.nodes.Document
@@ -25,12 +24,31 @@ class ParseService(
         return url.replace(Regex("\\?language=[a-zA-Z+]+"), "")
     }
 
-    fun parseHtml(document: Document): Solution {
-        return Solution(
+    fun parseHtmlToProblem(document: Document): Problem {
+        return Problem(
             parseTitle(document),
             parseContent(document),
-            parseTestCase(document)
+            parseTestCases(document)
         )
+    }
+
+    private fun parseTestCases(document: Document): List<Map<String, String>> {
+        // 입출력 예제 div 찾기
+        val h5Element =
+            document.select("h5:containsOwn(입출력 예), h5:has(strong:containsOwn(입출력 예))").first()
+                ?: document.select("h3:containsOwn(입출력 예제), h3:has(strong:containsOwn(입출력 예제))").first()
+                ?: document.select("h3:containsOwn(예제 입출력), h3:has(strong:containsOwn(예제 입출력))").first()
+        val tableElement = h5Element!!.nextElementSibling()
+
+        val tableHeaders = tableElement!!.select("thead > tr > th")
+        val tableRows = tableElement.select("tbody > tr")
+
+        return tableRows.map { row ->
+            val rowValues = row.select("td")
+            rowValues.mapIndexed { index, td ->
+                tableHeaders[index].text() to td.text().toString()
+            }.toMap()
+        }.toList()
     }
 
     private fun parseTitle(document: Document): String {
@@ -39,34 +57,6 @@ class ParseService(
 
     private fun parseContent(document: Document): String {
         return document.select("textarea#code").text()
-    }
-
-    private fun parseTestCase(document: Document): Array<TestCase> {
-        val h5Element =
-            document.select("h5:containsOwn(입출력 예), h5:has(strong:containsOwn(입출력 예))").first()
-                ?: document.select("h3:containsOwn(입출력 예제), h3:has(strong:containsOwn(입출력 예제))").first()
-                ?: document.select("h3:containsOwn(예제 입출력), h3:has(strong:containsOwn(예제 입출력))").first()
-        val tableElement = h5Element!!.nextElementSibling()
-
-        val tableHeader = tableElement!!.select("thead > tr > th")
-        val tableRows = tableElement.select("tbody > tr")
-
-        val content = parseContent(document)
-        val paramTypeMap = parseParamType(content)
-
-        return tableRows.map { row ->
-            val values = mutableMapOf<String, Any>()
-            val columnValues = row.select("td")
-
-            for (i in 0 until tableHeader.size - 1) {
-                val key = tableHeader[i].text()
-                val value = getValue(key, columnValues[i].text(), paramTypeMap)
-                values[key] = value
-            }
-
-            val result = parseValue(columnValues.last()!!.text())
-            TestCase(values, result)
-        }.toTypedArray()
     }
 
     private fun getValue(key: String, value: String, paramTypeMap: Map<String, String>): Any {
