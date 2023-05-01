@@ -11,9 +11,9 @@ import com.intellij.openapi.ui.Messages
 import com.intellij.openapi.vfs.LocalFileSystem
 import com.intellij.openapi.vfs.VirtualFile
 import com.moseoh.programmers_helper._common.PluginBundle.lazy
-import com.moseoh.programmers_helper.actions.import_problem.model.Problem
 import com.moseoh.programmers_helper.actions.import_problem.service.FileService
 import com.moseoh.programmers_helper.actions.import_problem.service.ParseService
+import com.moseoh.programmers_helper.actions.import_problem.service.dto.ProblemDto
 import com.moseoh.programmers_helper.settings.model.ProgrammersHelperSettings
 import org.jsoup.HttpStatusException
 import org.jsoup.Jsoup
@@ -43,7 +43,7 @@ class ImportProblemAction : AnAction(
     private fun getProblem(
         event: AnActionEvent,
         useClipboard: Boolean = ProgrammersHelperSettings.instance.useClipboard
-    ): Problem? {
+    ): ProblemDto? {
         val urlInput = urlInput(event, useClipboard) ?: return null
         val url = parseService.getUrl(urlInput)
 

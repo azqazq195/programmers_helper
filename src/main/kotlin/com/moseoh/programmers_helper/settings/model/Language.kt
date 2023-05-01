@@ -2,9 +2,10 @@ package com.moseoh.programmers_helper.settings.model
 
 enum class Language(
     val extension: String,
+    val template: String,
 ) {
-    Java(".java"),
-    Kotlin(".kt"),
+    Java(".java", "java_template.ftl"),
+    Kotlin(".kt", "kotlin_template.ftl"),
 }
 
 
