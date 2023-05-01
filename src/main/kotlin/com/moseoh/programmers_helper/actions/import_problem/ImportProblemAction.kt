@@ -11,10 +11,9 @@ import com.intellij.openapi.ui.Messages
 import com.intellij.openapi.vfs.LocalFileSystem
 import com.intellij.openapi.vfs.VirtualFile
 import com.moseoh.programmers_helper._common.PluginBundle.lazy
-import com.moseoh.programmers_helper.actions.import_problem.model.Solution
-import com.moseoh.programmers_helper.actions.import_problem.model.dto.SolutionDto
+import com.moseoh.programmers_helper.actions.import_problem.service.FileService
 import com.moseoh.programmers_helper.actions.import_problem.service.ParseService
-import com.moseoh.programmers_helper.actions.import_problem.service.SolutionService
+import com.moseoh.programmers_helper.actions.import_problem.service.dto.ProblemDto
 import com.moseoh.programmers_helper.settings.model.ProgrammersHelperSettings
 import org.jsoup.HttpStatusException
 import org.jsoup.Jsoup
@@ -28,30 +27,29 @@ class ImportProblemAction : AnAction(
     null
 ) {
     private val parseService = service<ParseService>()
-    private val solutionService = service<SolutionService>()
+    private val fileService = service<FileService>()
 
     override fun actionPerformed(event: AnActionEvent) {
         val project = event.project ?: return
         val directory = getDirectory(event) ?: return
-        val solution = getSolution(event) ?: return
-        val solutionDto = SolutionDto.of(solution)
-        val file = solutionService.createFile(project, directory, solutionDto) ?: return
+        val problem = getProblem(event) ?: return
+        val file = fileService.createFile(project, directory, problem) ?: return
         val virtualFile = LocalFileSystem.getInstance().refreshAndFindFileByIoFile(file)
         virtualFile?.let {
             FileEditorManager.getInstance(project).openTextEditor(OpenFileDescriptor(project, virtualFile), true)
         }
     }
 
-    private fun getSolution(
+    private fun getProblem(
         event: AnActionEvent,
         useClipboard: Boolean = ProgrammersHelperSettings.instance.useClipboard
-    ): Solution? {
+    ): ProblemDto? {
         val urlInput = urlInput(event, useClipboard) ?: return null
         val url = parseService.getUrl(urlInput)
 
         try {
             val document = Jsoup.connect(url).get()
-            return parseService.parseHtml(document)
+            return parseService.parseHtmlToProblem(document)
         } catch (e: HttpStatusException) {
             Messages.showErrorDialog("Url을 확인해 주세요.\nstatus code: ${e.statusCode}", "에러")
         } catch (e: Exception) {
@@ -66,7 +64,7 @@ class ImportProblemAction : AnAction(
             )
             throw e
         }
-        return getSolution(event, false)
+        return getProblem(event, false)
     }
 
 

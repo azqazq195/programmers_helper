@@ -12,6 +12,7 @@ repositories {
 }
 
 dependencies {
+    implementation("org.freemarker:freemarker:2.3.32")
     implementation("org.jsoup:jsoup:1.15.4")
     testImplementation("io.mockk:mockk:1.13.4")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")

@@ -1,94 +1,172 @@
 package com.moseoh.programmers_helper
 
-import com.moseoh.programmers_helper.actions.import_problem.model.dto.SolutionDto
-import com.moseoh.programmers_helper.actions.import_problem.model.dto.TestCaseDto
+import com.moseoh.programmers_helper.actions.import_problem.service.dto.ProblemDto
 
 class TestData {
     companion object {
-        fun solutionDto(): SolutionDto {
-            return SolutionDto(
-                "최고의집합",
-                "Solution.java",
-                "Solution",
-                """
-                    class Solution{
-                        public int[] solution(int n, int s) {
+        fun problemDto_kotlin_returnSingle(): ProblemDto {
+            return ProblemDto(
+                title = "n^2 배열 자르기",
+                content = """
+                    class Solution {
+                        fun solution(i: Int): Int {
+                            var answer: Int = 0
+                            return answer
+                        }
+                    }
+                """.trimIndent(),
+                testCases = listOf(
+                    mapOf(
+                        "i" to "3",
+                        "result" to "1",
+                    ),
+                    mapOf(
+                        "i" to "12",
+                        "result" to "40",
+                    ),
+                )
+            )
+        }
+
+        fun problemDto_kotlin_returnArray(): ProblemDto {
+            return ProblemDto(
+                title = "n^2 배열 자르기",
+                content = """
+                    class Solution {
+                        fun solution(i: Int): IntArray {
+                            var answer: IntArray = intArrayOf()
+                            return answer
+                        }
+                    }
+                """.trimIndent(),
+                testCases = listOf(
+                    mapOf(
+                        "i" to "3",
+                        "result" to "[1, 2]",
+                    ),
+                    mapOf(
+                        "i" to "12",
+                        "result" to "[10, 42]",
+                    ),
+                )
+            )
+        }
+
+        fun problemDto_kotlin_returnArrayArray(): ProblemDto {
+            return ProblemDto(
+                title = "n^2 배열 자르기",
+                content = """
+                    class Solution {
+                        fun solution(i: Int): Array<Array<String>> {
+                            var answer: Array<Array<String>> = arrayOf(arrayOf())
+                            return answer
+                        }
+                    }
+                """.trimIndent(),
+                testCases = listOf(
+                    mapOf(
+                        "i" to "3",
+                        "result" to "[[\"str1\", \"str2\"], [\"str3\"]]",
+                    ),
+                    mapOf(
+                        "i" to "12",
+                        "result" to "[[\"str1\", \"str2\", \"str3\"], [\"str4\"]]",
+                    ),
+                )
+            )
+        }
+
+        fun problemDto_java_returnPrimitive(): ProblemDto {
+            return ProblemDto(
+                title = "n^2 배열 자르기",
+                content = """
+                    class Solution {
+                        public int solution(int i) {
+                            int answer = 0;
+                            return answer;
+                        }
+                    }
+                """.trimIndent(),
+                testCases = listOf(
+                    mapOf(
+                        "i" to "3",
+                        "result" to "1",
+                    ),
+                    mapOf(
+                        "i" to "12",
+                        "result" to "40",
+                    ),
+                )
+            )
+        }
+
+        fun problemDto_java_returnString(): ProblemDto {
+            return ProblemDto(
+                title = "n^2 배열 자르기",
+                content = """
+                    class Solution {
+                        public String solution(int i) {
+                            String answer = "";
+                            return answer;
+                        }
+                    }
+                """.trimIndent(),
+                testCases = listOf(
+                    mapOf(
+                        "i" to "3",
+                        "result" to "str",
+                    ),
+                    mapOf(
+                        "i" to "12",
+                        "result" to "str22",
+                    ),
+                )
+            )
+        }
+
+        fun problemDto_java_returnArray(): ProblemDto {
+            return ProblemDto(
+                title = "n^2 배열 자르기",
+                content = """
+                    class Solution {
+                        public int[] solution(int i) {
                             int[] answer = {};
                             return answer;
                         }
                     }
                 """.trimIndent(),
-                arrayOf(
-                    TestCaseDto(
-                        mapOf(
-                            Pair("number", 2),
-                            Pair("ll", 2L),
-                            Pair("string", "string"),
-                            Pair("intArray", intArrayOf(1, 2, 3).toTypedArray()),
-                            Pair("array", arrayOf("a", "b", "c")),
-                            Pair(
-                                "arrayIntArray",
-                                arrayOf(
-                                    intArrayOf(1, 2).toTypedArray(),
-                                    intArrayOf(3, 4).toTypedArray()
-                                )
-                            )
-                        ),
-                        1
+                testCases = listOf(
+                    mapOf(
+                        "i" to "3",
+                        "result" to "[1, 2]",
                     ),
-                    TestCaseDto(
-                        mapOf(
-                            Pair("number", 5),
-                            Pair("ll", 5L),
-                            Pair("string", "example"),
-                            Pair("intArray", intArrayOf(5, 6, 8).toTypedArray()),
-                            Pair("array", arrayOf("E", "d", "A")),
-                            Pair(
-                                "arrayIntArray",
-                                arrayOf(
-                                    intArrayOf(11, 55).toTypedArray(),
-                                    intArrayOf(4, 3).toTypedArray()
-                                )
-                            )
-                        ),
-                        intArrayOf(-1).toTypedArray()
+                    mapOf(
+                        "i" to "12",
+                        "result" to "[10, 42]",
                     ),
-                    TestCaseDto(
-                        mapOf(
-                            Pair("number", 5),
-                            Pair("ll", 5L),
-                            Pair("string", "example"),
-                            Pair("intArray", intArrayOf(5, 6, 8).toTypedArray()),
-                            Pair("array", arrayOf("E", "d", "A")),
-                            Pair(
-                                "arrayIntArray",
-                                arrayOf(
-                                    intArrayOf(11, 55).toTypedArray(),
-                                    intArrayOf(4, 3).toTypedArray()
-                                )
-                            )
-                        ),
-                        arrayOf(
-                            intArrayOf(11, 55).toTypedArray(),
-                            intArrayOf(4, 3).toTypedArray()
-                        )
+                )
+            )
+        }
+
+        fun problemDto_java_returnArrayArray(): ProblemDto {
+            return ProblemDto(
+                title = "n^2 배열 자르기",
+                content = """
+                    class Solution {
+                        public int[][] solution(int i) {
+                            int[][] answer = {};
+                            return answer;
+                        }
+                    }
+                """.trimIndent(),
+                testCases = listOf(
+                    mapOf(
+                        "i" to "3",
+                        "result" to "[[\"str1\", \"str2\"], [\"str3\"]]",
                     ),
-                    TestCaseDto(
-                        mapOf(
-                            Pair("number", 5),
-                            Pair("ll", 5L),
-                            Pair("string", "example"),
-                            Pair("intArray", intArrayOf(5, 6, 8).toTypedArray()),
-                            Pair("array", arrayOf("E", "d", "A")),
-                            Pair(
-                                "arrayIntArray",
-                                arrayOf(
-                                    intArrayOf(11, 55).toTypedArray(),
-                                    intArrayOf(4, 3).toTypedArray()
-                                )
-                            )
-                        ),
-                        "answer"
+                    mapOf(
+                        "i" to "12",
+                        "result" to "[[\"str1\", \"str2\", \"str3\"], [\"str4\"]]",
                     ),
                 )
             )
