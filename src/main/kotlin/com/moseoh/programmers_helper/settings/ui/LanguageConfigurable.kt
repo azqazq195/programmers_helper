@@ -20,6 +20,7 @@ class LanguageConfigurable : Configurable {
     private val useFolderCheckBox = CheckBox(get("useFolderCheckBox"))
     private val useNameSpacingCheckBox = CheckBox(get("useNameSpacingCheckBox"))
     private val useMainFunctionCheckbox = CheckBox(get("useMainFunctionCheckbox"))
+    private val useHelpCommentCheckbox = CheckBox(get("use"))
 
     override fun createComponent(): JComponent {
         return panel {
@@ -38,6 +39,12 @@ class LanguageConfigurable : Configurable {
             row("${get("mainFunction")}: ") {
                 cell(useMainFunctionCheckbox).comment(get("mainFunctionDesc"))
             }
+            row("${get("mainFunction")}: ") {
+                cell(useMainFunctionCheckbox).comment(get("mainFunctionDesc"))
+            }
+            row("${get("helpComment")}: ") {
+                cell(useMainFunctionCheckbox).comment(get("helpCommentDesc"))
+            }
             row {
                 link("${get("github")} ") { BrowserUtil.browse("https://github.com/azqazq195/programmers_helper") }
             }
@@ -54,7 +61,8 @@ class LanguageConfigurable : Configurable {
                 settings.useClipboard != useClipboardCheckBox.isSelected ||
                 settings.useFolder != useFolderCheckBox.isSelected ||
                 settings.useNameSpacing != useNameSpacingCheckBox.isSelected ||
-                settings.useMainFunction != useMainFunctionCheckbox.isSelected
+                settings.useMainFunction != useMainFunctionCheckbox.isSelected ||
+                settings.useHelpComment != useHelpCommentCheckbox.isSelected
     }
 
     @Throws(ConfigurationException::class)
@@ -66,6 +74,7 @@ class LanguageConfigurable : Configurable {
         settings.useFolder = useFolderCheckBox.isSelected
         settings.useNameSpacing = useNameSpacingCheckBox.isSelected
         settings.useMainFunction = useMainFunctionCheckbox.isSelected
+        settings.useHelpComment = useHelpCommentCheckbox.isSelected
     }
 
     override fun reset() {
@@ -74,5 +83,6 @@ class LanguageConfigurable : Configurable {
         useFolderCheckBox.isSelected = settings.useFolder
         useNameSpacingCheckBox.isSelected = settings.useNameSpacing
         useMainFunctionCheckbox.isSelected = settings.useMainFunction
+        useHelpCommentCheckbox.isSelected = settings.useHelpComment
     }
 }
