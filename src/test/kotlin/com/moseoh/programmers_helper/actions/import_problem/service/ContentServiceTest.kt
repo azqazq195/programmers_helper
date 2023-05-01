@@ -20,18 +20,23 @@ class ContentServiceTest {
     private val project = mockk<Project>()
     private val directory = mockk<VirtualFile>()
 
-    @Test
-    fun `get java primitive 타입 반환`() {
-        // given
+    private fun mocking(language: Language, useHelpComment: Boolean = false) {
         mockkObject(ProgrammersHelperSettings)
         every { ProgrammersHelperSettings.instance } returns ProgrammersHelperSettings()
-        every { ProgrammersHelperSettings.instance.language } returns Language.Java
+        every { ProgrammersHelperSettings.instance.language } returns language
         every { ProgrammersHelperSettings.instance.useFolder } returns false
         every { ProgrammersHelperSettings.instance.useNameSpacing } returns false
         every { ProgrammersHelperSettings.instance.useMainFunction } returns true
+        every { ProgrammersHelperSettings.instance.useHelpComment } returns useHelpComment
+
         every { project.basePath } returns "src"
         every { directory.path } returns "src/com/moseoh/example"
+    }
 
+    @Test
+    fun `get java primitive 타입 반환`() {
+        // given
+        mocking(Language.Java)
         javaTemplateMapper = JavaTemplateMapper(ProgrammersHelperSettings.instance)
         kotlinTemplateMapper = KotlinTemplateMapper(ProgrammersHelperSettings.instance)
         contentService = ContentService(ProgrammersHelperSettings.instance, javaTemplateMapper, kotlinTemplateMapper)
@@ -82,15 +87,7 @@ class ContentServiceTest {
     @Test
     fun `get java String 타입 반환`() {
         // given
-        mockkObject(ProgrammersHelperSettings)
-        every { ProgrammersHelperSettings.instance } returns ProgrammersHelperSettings()
-        every { ProgrammersHelperSettings.instance.language } returns Language.Java
-        every { ProgrammersHelperSettings.instance.useFolder } returns false
-        every { ProgrammersHelperSettings.instance.useNameSpacing } returns false
-        every { ProgrammersHelperSettings.instance.useMainFunction } returns true
-        every { project.basePath } returns "src"
-        every { directory.path } returns "src/com/moseoh/example"
-
+        mocking(Language.Java)
         javaTemplateMapper = JavaTemplateMapper(ProgrammersHelperSettings.instance)
         kotlinTemplateMapper = KotlinTemplateMapper(ProgrammersHelperSettings.instance)
         contentService = ContentService(ProgrammersHelperSettings.instance, javaTemplateMapper, kotlinTemplateMapper)
@@ -141,15 +138,7 @@ class ContentServiceTest {
     @Test
     fun `get java 배열 타입 반환`() {
         // given
-        mockkObject(ProgrammersHelperSettings)
-        every { ProgrammersHelperSettings.instance } returns ProgrammersHelperSettings()
-        every { ProgrammersHelperSettings.instance.language } returns Language.Java
-        every { ProgrammersHelperSettings.instance.useFolder } returns false
-        every { ProgrammersHelperSettings.instance.useNameSpacing } returns false
-        every { ProgrammersHelperSettings.instance.useMainFunction } returns true
-        every { project.basePath } returns "src"
-        every { directory.path } returns "src/com/moseoh/example"
-
+        mocking(Language.Java)
         javaTemplateMapper = JavaTemplateMapper(ProgrammersHelperSettings.instance)
         kotlinTemplateMapper = KotlinTemplateMapper(ProgrammersHelperSettings.instance)
         contentService = ContentService(ProgrammersHelperSettings.instance, javaTemplateMapper, kotlinTemplateMapper)
@@ -202,15 +191,7 @@ class ContentServiceTest {
     @Test
     fun `get java 2차원 배열 타입 반환`() {
         // given
-        mockkObject(ProgrammersHelperSettings)
-        every { ProgrammersHelperSettings.instance } returns ProgrammersHelperSettings()
-        every { ProgrammersHelperSettings.instance.language } returns Language.Java
-        every { ProgrammersHelperSettings.instance.useFolder } returns false
-        every { ProgrammersHelperSettings.instance.useNameSpacing } returns false
-        every { ProgrammersHelperSettings.instance.useMainFunction } returns true
-        every { project.basePath } returns "src"
-        every { directory.path } returns "src/com/moseoh/example"
-
+        mocking(Language.Java)
         javaTemplateMapper = JavaTemplateMapper(ProgrammersHelperSettings.instance)
         kotlinTemplateMapper = KotlinTemplateMapper(ProgrammersHelperSettings.instance)
         contentService = ContentService(ProgrammersHelperSettings.instance, javaTemplateMapper, kotlinTemplateMapper)
@@ -263,15 +244,7 @@ class ContentServiceTest {
     @Test
     fun `get kotlin 일반 타입 반환`() {
         // given
-        mockkObject(ProgrammersHelperSettings)
-        every { ProgrammersHelperSettings.instance } returns ProgrammersHelperSettings()
-        every { ProgrammersHelperSettings.instance.language } returns Language.Kotlin
-        every { ProgrammersHelperSettings.instance.useFolder } returns false
-        every { ProgrammersHelperSettings.instance.useNameSpacing } returns false
-        every { ProgrammersHelperSettings.instance.useMainFunction } returns true
-        every { project.basePath } returns "src"
-        every { directory.path } returns "src/com/moseoh/example"
-
+        mocking(Language.Kotlin)
         javaTemplateMapper = JavaTemplateMapper(ProgrammersHelperSettings.instance)
         kotlinTemplateMapper = KotlinTemplateMapper(ProgrammersHelperSettings.instance)
         contentService = ContentService(ProgrammersHelperSettings.instance, javaTemplateMapper, kotlinTemplateMapper)
@@ -321,15 +294,7 @@ class ContentServiceTest {
     @Test
     fun `get kotlin 배열 타입 반환`() {
         // given
-        mockkObject(ProgrammersHelperSettings)
-        every { ProgrammersHelperSettings.instance } returns ProgrammersHelperSettings()
-        every { ProgrammersHelperSettings.instance.language } returns Language.Kotlin
-        every { ProgrammersHelperSettings.instance.useFolder } returns false
-        every { ProgrammersHelperSettings.instance.useNameSpacing } returns false
-        every { ProgrammersHelperSettings.instance.useMainFunction } returns true
-        every { project.basePath } returns "src"
-        every { directory.path } returns "src/com/moseoh/example"
-
+        mocking(Language.Kotlin)
         javaTemplateMapper = JavaTemplateMapper(ProgrammersHelperSettings.instance)
         kotlinTemplateMapper = KotlinTemplateMapper(ProgrammersHelperSettings.instance)
         contentService = ContentService(ProgrammersHelperSettings.instance, javaTemplateMapper, kotlinTemplateMapper)
@@ -379,15 +344,7 @@ class ContentServiceTest {
     @Test
     fun `get kotlin 2차원 배열 타입 반환`() {
         // given
-        mockkObject(ProgrammersHelperSettings)
-        every { ProgrammersHelperSettings.instance } returns ProgrammersHelperSettings()
-        every { ProgrammersHelperSettings.instance.language } returns Language.Kotlin
-        every { ProgrammersHelperSettings.instance.useFolder } returns false
-        every { ProgrammersHelperSettings.instance.useNameSpacing } returns false
-        every { ProgrammersHelperSettings.instance.useMainFunction } returns true
-        every { project.basePath } returns "src"
-        every { directory.path } returns "src/com/moseoh/example"
-
+        mocking(Language.Kotlin)
         javaTemplateMapper = JavaTemplateMapper(ProgrammersHelperSettings.instance)
         kotlinTemplateMapper = KotlinTemplateMapper(ProgrammersHelperSettings.instance)
         contentService = ContentService(ProgrammersHelperSettings.instance, javaTemplateMapper, kotlinTemplateMapper)
@@ -433,4 +390,149 @@ class ContentServiceTest {
             result
         )
     }
+
+    @Test
+    fun `get java 도움말 주석`() {
+        // given
+        mocking(Language.Java, true)
+        javaTemplateMapper = JavaTemplateMapper(ProgrammersHelperSettings.instance)
+        kotlinTemplateMapper = KotlinTemplateMapper(ProgrammersHelperSettings.instance)
+        contentService = ContentService(ProgrammersHelperSettings.instance, javaTemplateMapper, kotlinTemplateMapper)
+        val problem = TestData.problemDto_java_returnPrimitive()
+
+        // when
+        val result = contentService.get(project, directory, problem)
+
+        // then
+        assertEquals(
+            """
+                package com.moseoh.example;
+
+                /**
+                * main, PRINT_RESULT 는 테스트 케이스 실행 및 결과 확인을 위한 함수입니다.
+                * [답안지 복사] 기능을 사용하는 경우 해당 함수들을 제외하며, 답안에 필요한 코드만 복사됩니다.
+                * 테스트 케이스 추가 등 함수 내부 변경은 가능하나, 함수 이름 변경시 [답안지 복사] 기능이 제대로 동작하지 않습니다.
+                *
+                * 또한, 기본 설정으로 [답안지 복사] 사용시 해당 주석과 작성하신 주석을 제외하여 복사됩니다.
+                * [주석 복사] 여부는 설정을 통해 변경할 수 있습니다.
+                *
+                * [도움말 주석] 옵션은 설정을 통해 제거할 수 있습니다.
+                *
+                * - [답안지 복사]
+                *   코드 - 답안지 복사 (기본 단축키 cmd + shift + w)
+                *
+                * - [도움말 주석]
+                *   설정 - 도구 - 프로그래머스 헬퍼 - 도움말 주석
+                *
+                * - [주석 복사]
+                *   설정 - 도구 - 프로그래머스 헬퍼 - 주석 복사
+                *
+                * GitHub: https://github.com/azqazq195/programmers_helper
+                */
+                class n2배열자르기 {
+                    public static void main(String[] args) {
+                        int i1 = 3;
+                        int result1 = 1;
+                        int answer1 = new n2배열자르기().solution(i1);
+                        PRINT_RESULT(1, result1, answer1);
+                
+                        int i2 = 12;
+                        int result2 = 40;
+                        int answer2 = new n2배열자르기().solution(i2);
+                        PRINT_RESULT(2, result2, answer2);
+                    }
+                
+                    public static void PRINT_RESULT(int index, int result, int answer) {
+                        boolean correct = result == answer;
+                        StringBuilder sb = new StringBuilder();
+                        sb.append("\n\n테스트 케이스 ").append(index).append(": ");
+                        sb.append(correct ? "정답" : "오답").append("\n");
+                        sb.append("\t- 실행 결과: \t").append(answer).append("\n");
+                        sb.append("\t- 기댓값: \t").append(result).append("\n");
+                        if (correct) System.out.println(sb);
+                        else throw new RuntimeException(sb.toString());
+                    }
+                
+                    public int solution(int i) {
+                        int answer = 0;
+                        return answer;
+                    }
+                }
+            """.trimIndent(),
+            result
+        )
+    }
+
+    @Test
+    fun `get kotlin 도움말 주석`() {
+        // given
+        mocking(Language.Kotlin, true)
+        javaTemplateMapper = JavaTemplateMapper(ProgrammersHelperSettings.instance)
+        kotlinTemplateMapper = KotlinTemplateMapper(ProgrammersHelperSettings.instance)
+        contentService = ContentService(ProgrammersHelperSettings.instance, javaTemplateMapper, kotlinTemplateMapper)
+        val problem = TestData.problemDto_kotlin_returnSingle()
+
+        // when
+        val result = contentService.get(project, directory, problem)
+
+        // then
+        assertEquals(
+            """
+                package com.moseoh.example
+                
+                /**
+                * main, printResult 는 테스트 케이스 실행 및 결과 확인을 위한 함수입니다.
+                * [답안지 복사] 기능을 사용하는 경우 해당 함수들을 제외하며, 답안에 필요한 코드만 복사됩니다.
+                * 테스트 케이스 추가 등 함수 내부 변경은 가능하나, 함수 이름 변경시 [답안지 복사] 기능이 제대로 동작하지 않습니다.
+                *
+                * 또한, 기본 설정으로 [답안지 복사] 사용시 해당 주석과 작성하신 주석을 제외하여 복사됩니다.
+                * [주석 복사] 여부는 설정을 통해 변경할 수 있습니다.
+                *
+                * [도움말 주석] 옵션은 설정을 통해 제거할 수 있습니다.
+                *
+                * - [답안지 복사]
+                *   코드 - 답안지 복사 (기본 단축키 cmd + shift + w)
+                *
+                * - [도움말 주석]
+                *   설정 - 도구 - 프로그래머스 헬퍼 - 도움말 주석
+                *
+                * - [주석 복사]
+                *   설정 - 도구 - 프로그래머스 헬퍼 - 주석 복사
+                *
+                * GitHub: https://github.com/azqazq195/programmers_helper
+                */
+                fun main() {
+                    fun printResult(index: Int, result: Int, answer: Int) {
+                        val correct = result == answer
+                        val sb = StringBuilder()
+                        sb.append("\n\n테스트 케이스 ").append(index).append(": ")
+                        sb.append(if (correct) "정답" else "오답").append("\n")
+                        sb.append("\t- 실행 결과: \t").append(answer).append("\n")
+                        sb.append("\t- 기댓값: \t").append(result).append("\n")
+                        if (correct) println(sb) else throw RuntimeException(sb.toString())
+                    }
+                
+                    val i1 = 3
+                    val result1 = 1
+                    val answer1 = n2배열자르기().solution(i1)
+                    printResult(1, result1, answer1)
+                
+                    val i2 = 12
+                    val result2 = 40
+                    val answer2 = n2배열자르기().solution(i2)
+                    printResult(2, result2, answer2)
+                }
+                
+                class n2배열자르기 {
+                    fun solution(i: Int): Int {
+                        var answer: Int = 0
+                        return answer
+                    }
+                }
+            """.trimIndent(),
+            result
+        )
+    }
+
+
 }

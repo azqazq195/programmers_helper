@@ -4,6 +4,7 @@ data class JavaTemplateDto(
     val packagePath: String,
     val useImportArray: Boolean,
     val useMain: Boolean,
+    val helpComment: String?,
     val className: String,
     val classContent: String,
     val testCaseDtos: List<TestCaseDto>,

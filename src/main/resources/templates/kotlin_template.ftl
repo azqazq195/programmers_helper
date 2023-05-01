@@ -2,6 +2,9 @@
 package ${dto.packagePath}
 
 </#if>
+<#if dto.helpComment?has_content>
+${dto.helpComment}
+</#if>
 <#if dto.useMain>
 fun main() {
     fun printResult(index: Int, result: ${dto.testCaseDtos[0].result.type}, answer: ${dto.testCaseDtos[0].result.type}) {

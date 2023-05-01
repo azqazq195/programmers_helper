@@ -1,6 +1,7 @@
 package com.moseoh.programmers_helper.actions.import_problem.service.dto
 
 import com.intellij.openapi.components.Service
+import com.moseoh.programmers_helper._common.PluginBundle.get
 import com.moseoh.programmers_helper.settings.model.ProgrammersHelperSettings
 
 @Service
@@ -12,6 +13,7 @@ class JavaTemplateMapper(
             packagePath = getPackagePath(projectPath, directoryPath),
             useImportArray = useImportArray(problemDto),
             useMain = settings.useMainFunction,
+            helpComment = getHelpComment(),
             className = problemDto.getClassName(),
             classContent = getClassContent(problemDto),
             testCaseDtos = getTestCaseDtos(problemDto),
@@ -25,6 +27,11 @@ class JavaTemplateMapper(
 
     private fun useImportArray(problemDto: ProblemDto): Boolean {
         return extractReturnType(problemDto.content).contains("[]")
+    }
+
+    private fun getHelpComment(): String? {
+        if (!settings.useHelpComment) return null
+        return get("helpCommentJavaFile")
     }
 
     private fun getClassContent(problemDto: ProblemDto): String {

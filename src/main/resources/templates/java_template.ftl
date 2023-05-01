@@ -6,6 +6,9 @@ package ${dto.packagePath};
 import java.util.Arrays;
 
 </#if>
+<#if dto.helpComment?has_content>
+${dto.helpComment}
+</#if>
 class ${dto.className} {
 <#if dto.useMain>
     public static void main(String[] args) {

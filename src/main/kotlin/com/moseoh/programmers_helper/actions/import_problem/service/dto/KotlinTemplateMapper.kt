@@ -1,6 +1,7 @@
 package com.moseoh.programmers_helper.actions.import_problem.service.dto
 
 import com.intellij.openapi.components.Service
+import com.moseoh.programmers_helper._common.PluginBundle.get
 import com.moseoh.programmers_helper.settings.model.ProgrammersHelperSettings
 
 @Service
@@ -11,6 +12,7 @@ class KotlinTemplateMapper(
         return KotlinTemplateDto(
             packagePath = getPackagePath(projectPath, directoryPath),
             useMain = settings.useMainFunction,
+            helpComment = getHelpComment(),
             className = problemDto.getClassName(),
             classContent = getClassContent(problemDto),
             testCaseDtos = getTestCaseDtos(problemDto),
@@ -20,6 +22,11 @@ class KotlinTemplateMapper(
     private fun getPackagePath(projectPath: String, directoryPath: String): String {
         val packagePath = directoryPath.substring(directoryPath.indexOf(projectPath) + projectPath.length + 1)
         return packagePath.replace('/', '.')
+    }
+
+    private fun getHelpComment(): String? {
+        if (!settings.useHelpComment) return null
+        return get("helpCommentKotlinFile")
     }
 
     private fun getClassContent(problemDto: ProblemDto): String {
