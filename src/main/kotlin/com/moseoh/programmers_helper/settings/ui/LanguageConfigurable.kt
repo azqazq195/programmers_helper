@@ -39,11 +39,8 @@ class LanguageConfigurable : Configurable {
             row("${get("mainFunction")}: ") {
                 cell(useMainFunctionCheckbox).comment(get("mainFunctionDesc"))
             }
-            row("${get("mainFunction")}: ") {
-                cell(useMainFunctionCheckbox).comment(get("mainFunctionDesc"))
-            }
             row("${get("helpComment")}: ") {
-                cell(useMainFunctionCheckbox).comment(get("helpCommentDesc"))
+                cell(useHelpCommentCheckbox).comment(get("helpCommentDesc"))
             }
             row {
                 link("${get("github")} ") { BrowserUtil.browse("https://github.com/azqazq195/programmers_helper") }
