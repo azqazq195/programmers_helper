@@ -10,6 +10,7 @@ import com.intellij.openapi.ui.InputValidatorEx
 import com.intellij.openapi.ui.Messages
 import com.intellij.openapi.vfs.LocalFileSystem
 import com.intellij.openapi.vfs.VirtualFile
+import com.moseoh.programmers_helper._common.CException
 import com.moseoh.programmers_helper._common.PluginBundle.lazy
 import com.moseoh.programmers_helper.actions.import_problem.service.FileService
 import com.moseoh.programmers_helper.actions.import_problem.service.ParseService
@@ -50,15 +51,25 @@ class ImportProblemAction : AnAction(
         try {
             val document = Jsoup.connect(url).get()
             return parseService.parseHtmlToProblem(document)
+        } catch (e: CException) { // TODO 언어 처리
+            Messages.showErrorDialog(
+                buildString {
+                    append("정보를 읽을 수 없습니다.\n")
+                    append("사유: \n")
+                    append("\t- ${e.message}\n")
+                }, "에러"
+            )
         } catch (e: HttpStatusException) {
             Messages.showErrorDialog("Url을 확인해 주세요.\nstatus code: ${e.statusCode}", "에러")
         } catch (e: Exception) {
             Messages.showErrorDialog(
                 buildString {
-                    append("해당 url 에서 정보를 읽을 수 없습니다.\n")
+                    append("정보를 읽을 수 없습니다.\n")
+                    append("\t- 문제에서 설정한 언어를 지원하지 않는 경우\n")
                     append("\t- 오래된 문제의 경우 양식이 달라 읽을 수 없음\n")
                     append("\t- 기출 문제의 경우 양식이 달라 읽을 수 없음\n")
-                    append("이외의 경우 제보해 주세요.")
+                    append("언어를 지원하지 않는 경우를 제외하고 문제 url을 제보해 주세요.\n")
+                    append("https://github.com/azqazq195/programmers_helper/issues/new")
                 },
                 "에러"
             )
