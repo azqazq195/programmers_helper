@@ -12,6 +12,8 @@ import io.mockk.mockk
 import io.mockk.mockkObject
 import org.junit.Test
 import org.junit.jupiter.api.Assertions.assertEquals
+import java.util.*
+
 
 class ContentServiceTest {
     private lateinit var javaTemplateMapper: JavaTemplateMapper
@@ -31,6 +33,8 @@ class ContentServiceTest {
 
         every { project.basePath } returns "src"
         every { directory.path } returns "src/com/moseoh/example"
+
+        Locale.setDefault(Locale.KOREA)
     }
 
     @Test
