@@ -8,6 +8,11 @@ on:
 jobs:
   build_and_test:
     runs-on: ubuntu-latest
+    
+    permissions:
+      checks: write
+      pull-requests: write
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
