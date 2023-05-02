@@ -20,24 +20,38 @@ class LanguageConfigurable : Configurable {
     private val useFolderCheckBox = CheckBox(get("useFolderCheckBox"))
     private val useNameSpacingCheckBox = CheckBox(get("useNameSpacingCheckBox"))
     private val useMainFunctionCheckbox = CheckBox(get("useMainFunctionCheckbox"))
+    private val useHelpCommentCheckbox = CheckBox(get("use"))
+    private val allowCopyCommentsCheckbox = CheckBox(get("allowed"))
 
     override fun createComponent(): JComponent {
         return panel {
-            row("${get("language")}: ") {
-                cell(languageComboBox).comment(get("languageDesc"))
+            group(get("importProblem"), true) {
+                row("${get("language")}: ") {
+                    cell(languageComboBox).comment(get("languageDesc"))
+                }
+                row("${get("copyMode")}: ") {
+                    cell(useClipboardCheckBox).comment(get("copyModeDesc"))
+                }
+                row("${get("createMode")}: ") {
+                    cell(useFolderCheckBox).comment(get("createModeDesc"))
+                }
+                row("${get("naming")}: ") {
+                    cell(useNameSpacingCheckBox).comment(get("namingDesc"))
+                }
+                row("${get("mainFunction")}: ") {
+                    cell(useMainFunctionCheckbox).comment(get("mainFunctionDesc"))
+                }
+                row("${get("helpComment")}: ") {
+                    cell(useHelpCommentCheckbox)
+                }
             }
-            row("${get("copyMode")}: ") {
-                cell(useClipboardCheckBox).comment(get("copyModeDesc"))
+
+            group(get("copyAnswer"), true) {
+                row("${get("copyComments")}: ") {
+                    cell(allowCopyCommentsCheckbox).comment(get("copyCommentsDesc"))
+                }
             }
-            row("${get("createMode")}: ") {
-                cell(useFolderCheckBox).comment(get("createModeDesc"))
-            }
-            row("${get("naming")}: ") {
-                cell(useNameSpacingCheckBox).comment(get("namingDesc"))
-            }
-            row("${get("mainFunction")}: ") {
-                cell(useMainFunctionCheckbox).comment(get("mainFunctionDesc"))
-            }
+
             row {
                 link("${get("github")} ") { BrowserUtil.browse("https://github.com/azqazq195/programmers_helper") }
             }
@@ -54,7 +68,9 @@ class LanguageConfigurable : Configurable {
                 settings.useClipboard != useClipboardCheckBox.isSelected ||
                 settings.useFolder != useFolderCheckBox.isSelected ||
                 settings.useNameSpacing != useNameSpacingCheckBox.isSelected ||
-                settings.useMainFunction != useMainFunctionCheckbox.isSelected
+                settings.useMainFunction != useMainFunctionCheckbox.isSelected ||
+                settings.useHelpComment != useHelpCommentCheckbox.isSelected ||
+                settings.allowCopyComment != allowCopyCommentsCheckbox.isSelected
     }
 
     @Throws(ConfigurationException::class)
@@ -66,6 +82,8 @@ class LanguageConfigurable : Configurable {
         settings.useFolder = useFolderCheckBox.isSelected
         settings.useNameSpacing = useNameSpacingCheckBox.isSelected
         settings.useMainFunction = useMainFunctionCheckbox.isSelected
+        settings.useHelpComment = useHelpCommentCheckbox.isSelected
+        settings.allowCopyComment = allowCopyCommentsCheckbox.isSelected
     }
 
     override fun reset() {
@@ -74,5 +92,7 @@ class LanguageConfigurable : Configurable {
         useFolderCheckBox.isSelected = settings.useFolder
         useNameSpacingCheckBox.isSelected = settings.useNameSpacing
         useMainFunctionCheckbox.isSelected = settings.useMainFunction
+        useHelpCommentCheckbox.isSelected = settings.useHelpComment
+        allowCopyCommentsCheckbox.isSelected = settings.allowCopyComment
     }
 }

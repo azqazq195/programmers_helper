@@ -4,13 +4,14 @@ data class JavaTemplateDto(
     val packagePath: String,
     val useImportArray: Boolean,
     val useMain: Boolean,
+    val helpComment: String?,
     val className: String,
     val classContent: String,
     val testCaseDtos: List<TestCaseDto>,
 ) : ITemplateDto {
     data class TestCaseDto(
         val values: List<Value>,
-        val result: Value,
+        val answer: Value,
     )
 
     data class Value(

@@ -41,6 +41,16 @@ class ProgrammersHelperSettings : PersistentStateComponent<ProgrammersHelperSett
      */
     var useMainFunction: Boolean = true
 
+    /**
+     * 도움말 보기
+     */
+    var useHelpComment: Boolean = true
+
+    /**
+     * 주석 복사 여부
+     */
+    var allowCopyComment: Boolean = false
+
     data class State(var selectedLanguage: Language = Language.Kotlin)
 
     override fun getState(): State {

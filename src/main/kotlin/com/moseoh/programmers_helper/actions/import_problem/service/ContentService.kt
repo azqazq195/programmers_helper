@@ -27,7 +27,6 @@ class ContentService(
                 kotlinTemplateMapper.toDto(project.basePath!!, directory.path, problemDto)
             }
         }
-
         return Utils.convert(settings.language.template, dto)
     }
 }

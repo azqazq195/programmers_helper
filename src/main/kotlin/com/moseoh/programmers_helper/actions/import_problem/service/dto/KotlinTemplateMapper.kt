@@ -1,6 +1,7 @@
 package com.moseoh.programmers_helper.actions.import_problem.service.dto
 
 import com.intellij.openapi.components.Service
+import com.moseoh.programmers_helper._common.PluginBundle.get
 import com.moseoh.programmers_helper.settings.model.ProgrammersHelperSettings
 
 @Service
@@ -11,6 +12,7 @@ class KotlinTemplateMapper(
         return KotlinTemplateDto(
             packagePath = getPackagePath(projectPath, directoryPath),
             useMain = settings.useMainFunction,
+            helpComment = getHelpComment(),
             className = problemDto.getClassName(),
             classContent = getClassContent(problemDto),
             testCaseDtos = getTestCaseDtos(problemDto),
@@ -20,6 +22,11 @@ class KotlinTemplateMapper(
     private fun getPackagePath(projectPath: String, directoryPath: String): String {
         val packagePath = directoryPath.substring(directoryPath.indexOf(projectPath) + projectPath.length + 1)
         return packagePath.replace('/', '.')
+    }
+
+    private fun getHelpComment(): String? {
+        if (!settings.useHelpComment) return null
+        return get("helpCommentKotlinFile")
     }
 
     private fun getClassContent(problemDto: ProblemDto): String {
@@ -36,17 +43,18 @@ class KotlinTemplateMapper(
         val valueTypeMap = extractParamTypes(problemDto.content).toMutableMap()
         val returnType = extractReturnType(problemDto.content)
 
-        return problemDto.testCases.map { getTestCaseDto(it, valueTypeMap, returnType) }.toList()
+        return problemDto.testCases.map { getTestCaseDto(it, valueTypeMap, returnType, problemDto.answerName) }.toList()
     }
 
     private fun getTestCaseDto(
         testCase: Map<String, String>,
         valueTypeMap: Map<String, String>,
-        returnType: String
+        returnType: String,
+        answerName: String
     ): KotlinTemplateDto.TestCaseDto {
         val values = mutableListOf<KotlinTemplateDto.Value>()
         testCase.forEach {
-            if (it.key != "result") {
+            if (it.key != answerName) {
                 values.add(
                     KotlinTemplateDto.Value(
                         valueTypeMap[it.key]!!,
@@ -61,8 +69,8 @@ class KotlinTemplateMapper(
             values,
             KotlinTemplateDto.Value(
                 returnType,
-                "result",
-                getValue(returnType, testCase["result"]!!)
+                answerName,
+                getValue(returnType, testCase[answerName]!!)
             )
         )
     }
