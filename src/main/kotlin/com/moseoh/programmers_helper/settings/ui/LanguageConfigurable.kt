@@ -21,7 +21,7 @@ class LanguageConfigurable : Configurable {
     private val useNameSpacingCheckBox = CheckBox(get("useNameSpacingCheckBox"))
     private val useMainFunctionCheckbox = CheckBox(get("useMainFunctionCheckbox"))
     private val useHelpCommentCheckbox = CheckBox(get("use"))
-    private val useCopyCommentsCheckbox = CheckBox(get("allowed"))
+    private val allowCopyCommentsCheckbox = CheckBox(get("allowed"))
 
     override fun createComponent(): JComponent {
         return panel {
@@ -48,7 +48,7 @@ class LanguageConfigurable : Configurable {
 
             group(get("copyAnswer"), true) {
                 row("${get("copyComments")}: ") {
-                    cell(useCopyCommentsCheckbox).comment(get("copyCommentsDesc"))
+                    cell(allowCopyCommentsCheckbox).comment(get("copyCommentsDesc"))
                 }
             }
 
@@ -69,7 +69,8 @@ class LanguageConfigurable : Configurable {
                 settings.useFolder != useFolderCheckBox.isSelected ||
                 settings.useNameSpacing != useNameSpacingCheckBox.isSelected ||
                 settings.useMainFunction != useMainFunctionCheckbox.isSelected ||
-                settings.useHelpComment != useHelpCommentCheckbox.isSelected
+                settings.useHelpComment != useHelpCommentCheckbox.isSelected ||
+                settings.allowCopyComment != allowCopyCommentsCheckbox.isSelected
     }
 
     @Throws(ConfigurationException::class)
@@ -82,6 +83,7 @@ class LanguageConfigurable : Configurable {
         settings.useNameSpacing = useNameSpacingCheckBox.isSelected
         settings.useMainFunction = useMainFunctionCheckbox.isSelected
         settings.useHelpComment = useHelpCommentCheckbox.isSelected
+        settings.allowCopyComment = allowCopyCommentsCheckbox.isSelected
     }
 
     override fun reset() {
@@ -91,5 +93,6 @@ class LanguageConfigurable : Configurable {
         useNameSpacingCheckBox.isSelected = settings.useNameSpacing
         useMainFunctionCheckbox.isSelected = settings.useMainFunction
         useHelpCommentCheckbox.isSelected = settings.useHelpComment
+        allowCopyCommentsCheckbox.isSelected = settings.allowCopyComment
     }
 }

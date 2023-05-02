@@ -49,7 +49,7 @@ class ProgrammersHelperSettings : PersistentStateComponent<ProgrammersHelperSett
     /**
      * 주석 복사 여부
      */
-    var useCopyComment: Boolean = false
+    var allowCopyComment: Boolean = false
 
     data class State(var selectedLanguage: Language = Language.Kotlin)
 
