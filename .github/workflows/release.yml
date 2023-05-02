@@ -23,8 +23,15 @@ jobs:
         with:
           cache-key-prefix: gradle
 
-      - name: Build and run tests
+      - name: Build and Test
         run: ./gradlew build
+        
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          files: |
+            build/test-results/**/*.xml
 
   build_plugin_and_release_and_publish:
     needs: build_and_test
