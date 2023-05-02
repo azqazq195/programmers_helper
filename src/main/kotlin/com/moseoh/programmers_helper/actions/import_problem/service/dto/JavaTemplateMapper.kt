@@ -49,17 +49,18 @@ class JavaTemplateMapper(
         val valueTypeMap = extractParamTypes(problemDto.content).toMutableMap()
         val returnType = extractReturnType(problemDto.content)
 
-        return problemDto.testCases.map { getTestCaseDto(it, valueTypeMap, returnType) }.toList()
+        return problemDto.testCases.map { getTestCaseDto(it, valueTypeMap, returnType, problemDto.answerName) }.toList()
     }
 
     private fun getTestCaseDto(
         testCase: Map<String, String>,
         valueTypeMap: Map<String, String>,
-        returnType: String
+        returnType: String,
+        answerName: String,
     ): JavaTemplateDto.TestCaseDto {
         val values = mutableListOf<JavaTemplateDto.Value>()
         testCase.forEach {
-            if (it.key != "result") {
+            if (it.key != answerName) {
                 values.add(
                     JavaTemplateDto.Value(
                         valueTypeMap[it.key]!!,
@@ -74,21 +75,21 @@ class JavaTemplateMapper(
             values,
             JavaTemplateDto.Value(
                 returnType,
-                "result",
-                getValue(returnType, testCase["result"]!!)
+                answerName,
+                getValue(returnType, testCase[answerName]!!)
             )
         )
     }
 
     private fun extractReturnType(content: String): String {
-        val pattern = Regex("public .* solution\\(.*\\).*")
+        val pattern = Regex(".* solution\\(.*\\).*")
         val funcSignature = pattern.find(content)?.value ?: return "" // TODO Exception
         return funcSignature.substringBefore(" solution(").substringAfter("public ").trim()
     }
 
     private fun extractParamTypes(content: String): Map<String, String> {
         val valueTypeMap = mutableMapOf<String, String>()
-        val pattern = Regex("public .* solution\\(.*\\).*")
+        val pattern = Regex(".* solution\\(.*\\).*")
         val funcSignature = pattern.find(content)?.value ?: return valueTypeMap // TODO Exception
         val params = funcSignature.substringAfter("(").substringBeforeLast(")").split(", ")
 

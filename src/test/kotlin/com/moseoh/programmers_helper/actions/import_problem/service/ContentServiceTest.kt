@@ -53,13 +53,13 @@ class ContentServiceTest {
                 class n2배열자르기 {
                     public static void main(String[] args) {
                         int i1 = 3;
-                        int result1 = 1;
-                        int answer1 = new n2배열자르기().solution(i1);
+                        int answer1 = 1;
+                        int result1 = new n2배열자르기().solution(i1);
                         PRINT_RESULT(1, result1, answer1);
                 
                         int i2 = 12;
-                        int result2 = 40;
-                        int answer2 = new n2배열자르기().solution(i2);
+                        int answer2 = 40;
+                        int result2 = new n2배열자르기().solution(i2);
                         PRINT_RESULT(2, result2, answer2);
                     }
                 
@@ -68,8 +68,8 @@ class ContentServiceTest {
                         StringBuilder sb = new StringBuilder();
                         sb.append("\n\n테스트 케이스 ").append(index).append(": ");
                         sb.append(correct ? "정답" : "오답").append("\n");
-                        sb.append("\t- 실행 결과: \t").append(answer).append("\n");
-                        sb.append("\t- 기댓값: \t").append(result).append("\n");
+                        sb.append("\t- 실행 결과: \t").append(result).append("\n");
+                        sb.append("\t- 기댓값: \t").append(answer).append("\n");
                         if (correct) System.out.println(sb);
                         else throw new RuntimeException(sb.toString());
                     }
@@ -104,13 +104,13 @@ class ContentServiceTest {
                 class n2배열자르기 {
                     public static void main(String[] args) {
                         int i1 = 3;
-                        String result1 = "str";
-                        String answer1 = new n2배열자르기().solution(i1);
+                        String answer1 = "str";
+                        String result1 = new n2배열자르기().solution(i1);
                         PRINT_RESULT(1, result1, answer1);
                 
                         int i2 = 12;
-                        String result2 = "str22";
-                        String answer2 = new n2배열자르기().solution(i2);
+                        String answer2 = "str22";
+                        String result2 = new n2배열자르기().solution(i2);
                         PRINT_RESULT(2, result2, answer2);
                     }
                 
@@ -119,8 +119,8 @@ class ContentServiceTest {
                         StringBuilder sb = new StringBuilder();
                         sb.append("\n\n테스트 케이스 ").append(index).append(": ");
                         sb.append(correct ? "정답" : "오답").append("\n");
-                        sb.append("\t- 실행 결과: \t").append(answer).append("\n");
-                        sb.append("\t- 기댓값: \t").append(result).append("\n");
+                        sb.append("\t- 실행 결과: \t").append(result).append("\n");
+                        sb.append("\t- 기댓값: \t").append(answer).append("\n");
                         if (correct) System.out.println(sb);
                         else throw new RuntimeException(sb.toString());
                     }
@@ -157,13 +157,13 @@ class ContentServiceTest {
                 class n2배열자르기 {
                     public static void main(String[] args) {
                         int i1 = 3;
-                        int[] result1 = new int[]{1, 2};
-                        int[] answer1 = new n2배열자르기().solution(i1);
+                        int[] answer1 = new int[]{1, 2};
+                        int[] result1 = new n2배열자르기().solution(i1);
                         PRINT_RESULT(1, result1, answer1);
                 
                         int i2 = 12;
-                        int[] result2 = new int[]{10, 42};
-                        int[] answer2 = new n2배열자르기().solution(i2);
+                        int[] answer2 = new int[]{10, 42};
+                        int[] result2 = new n2배열자르기().solution(i2);
                         PRINT_RESULT(2, result2, answer2);
                     }
                 
@@ -172,8 +172,8 @@ class ContentServiceTest {
                         StringBuilder sb = new StringBuilder();
                         sb.append("\n\n테스트 케이스 ").append(index).append(": ");
                         sb.append(correct ? "정답" : "오답").append("\n");
-                        sb.append("\t- 실행 결과: \t").append(answer).append("\n");
-                        sb.append("\t- 기댓값: \t").append(result).append("\n");
+                        sb.append("\t- 실행 결과: \t").append(result).append("\n");
+                        sb.append("\t- 기댓값: \t").append(answer).append("\n");
                         if (correct) System.out.println(sb);
                         else throw new RuntimeException(sb.toString());
                     }
@@ -210,13 +210,13 @@ class ContentServiceTest {
                 class n2배열자르기 {
                     public static void main(String[] args) {
                         int i1 = 3;
-                        int[][] result1 = new int[][]{{"str1", "str2"}, {"str3"}};
-                        int[][] answer1 = new n2배열자르기().solution(i1);
+                        int[][] answer1 = new int[][]{{"str1", "str2"}, {"str3"}};
+                        int[][] result1 = new n2배열자르기().solution(i1);
                         PRINT_RESULT(1, result1, answer1);
                 
                         int i2 = 12;
-                        int[][] result2 = new int[][]{{"str1", "str2", "str3"}, {"str4"}};
-                        int[][] answer2 = new n2배열자르기().solution(i2);
+                        int[][] answer2 = new int[][]{{"str1", "str2", "str3"}, {"str4"}};
+                        int[][] result2 = new n2배열자르기().solution(i2);
                         PRINT_RESULT(2, result2, answer2);
                     }
                 
@@ -225,8 +225,8 @@ class ContentServiceTest {
                         StringBuilder sb = new StringBuilder();
                         sb.append("\n\n테스트 케이스 ").append(index).append(": ");
                         sb.append(correct ? "정답" : "오답").append("\n");
-                        sb.append("\t- 실행 결과: \t").append(answer).append("\n");
-                        sb.append("\t- 기댓값: \t").append(result).append("\n");
+                        sb.append("\t- 실행 결과: \t").append(result).append("\n");
+                        sb.append("\t- 기댓값: \t").append(answer).append("\n");
                         if (correct) System.out.println(sb);
                         else throw new RuntimeException(sb.toString());
                     }
@@ -264,19 +264,19 @@ class ContentServiceTest {
                         val sb = StringBuilder()
                         sb.append("\n\n테스트 케이스 ").append(index).append(": ")
                         sb.append(if (correct) "정답" else "오답").append("\n")
-                        sb.append("\t- 실행 결과: \t").append(answer).append("\n")
-                        sb.append("\t- 기댓값: \t").append(result).append("\n")
+                        sb.append("\t- 실행 결과: \t").append(result).append("\n")
+                        sb.append("\t- 기댓값: \t").append(answer).append("\n")
                         if (correct) println(sb) else throw RuntimeException(sb.toString())
                     }
 
                     val i1 = 3
-                    val result1 = 1
-                    val answer1 = n2배열자르기().solution(i1)
+                    val answer1 = 1
+                    val result1 = n2배열자르기().solution(i1)
                     printResult(1, result1, answer1)
 
                     val i2 = 12
-                    val result2 = 40
-                    val answer2 = n2배열자르기().solution(i2)
+                    val answer2 = 40
+                    val result2 = n2배열자르기().solution(i2)
                     printResult(2, result2, answer2)
                 }
 
@@ -314,19 +314,19 @@ class ContentServiceTest {
                         val sb = StringBuilder()
                         sb.append("\n\n테스트 케이스 ").append(index).append(": ")
                         sb.append(if (correct) "정답" else "오답").append("\n")
-                        sb.append("\t- 실행 결과: \t").append(answer).append("\n")
-                        sb.append("\t- 기댓값: \t").append(result).append("\n")
+                        sb.append("\t- 실행 결과: \t").append(result).append("\n")
+                        sb.append("\t- 기댓값: \t").append(answer).append("\n")
                         if (correct) println(sb) else throw RuntimeException(sb.toString())
                     }
                 
                     val i1 = 3
-                    val result1 = intArrayOf(1, 2)
-                    val answer1 = n2배열자르기().solution(i1)
+                    val answer1 = intArrayOf(1, 2)
+                    val result1 = n2배열자르기().solution(i1)
                     printResult(1, result1, answer1)
                 
                     val i2 = 12
-                    val result2 = intArrayOf(10, 42)
-                    val answer2 = n2배열자르기().solution(i2)
+                    val answer2 = intArrayOf(10, 42)
+                    val result2 = n2배열자르기().solution(i2)
                     printResult(2, result2, answer2)
                 }
                 
@@ -364,19 +364,19 @@ class ContentServiceTest {
                         val sb = StringBuilder()
                         sb.append("\n\n테스트 케이스 ").append(index).append(": ")
                         sb.append(if (correct) "정답" else "오답").append("\n")
-                        sb.append("\t- 실행 결과: \t").append(answer).append("\n")
-                        sb.append("\t- 기댓값: \t").append(result).append("\n")
+                        sb.append("\t- 실행 결과: \t").append(result).append("\n")
+                        sb.append("\t- 기댓값: \t").append(answer).append("\n")
                         if (correct) println(sb) else throw RuntimeException(sb.toString())
                     }
                 
                     val i1 = 3
-                    val result1 = arrayOf(arrayOf("str1", "str2"), arrayOf("str3"))
-                    val answer1 = n2배열자르기().solution(i1)
+                    val answer1 = arrayOf(arrayOf("str1", "str2"), arrayOf("str3"))
+                    val result1 = n2배열자르기().solution(i1)
                     printResult(1, result1, answer1)
                 
                     val i2 = 12
-                    val result2 = arrayOf(arrayOf("str1", "str2", "str3"), arrayOf("str4"))
-                    val answer2 = n2배열자르기().solution(i2)
+                    val answer2 = arrayOf(arrayOf("str1", "str2", "str3"), arrayOf("str4"))
+                    val result2 = n2배열자르기().solution(i2)
                     printResult(2, result2, answer2)
                 }
                 
@@ -432,13 +432,13 @@ class ContentServiceTest {
                 class n2배열자르기 {
                     public static void main(String[] args) {
                         int i1 = 3;
-                        int result1 = 1;
-                        int answer1 = new n2배열자르기().solution(i1);
+                        int answer1 = 1;
+                        int result1 = new n2배열자르기().solution(i1);
                         PRINT_RESULT(1, result1, answer1);
                 
                         int i2 = 12;
-                        int result2 = 40;
-                        int answer2 = new n2배열자르기().solution(i2);
+                        int answer2 = 40;
+                        int result2 = new n2배열자르기().solution(i2);
                         PRINT_RESULT(2, result2, answer2);
                     }
                 
@@ -447,8 +447,8 @@ class ContentServiceTest {
                         StringBuilder sb = new StringBuilder();
                         sb.append("\n\n테스트 케이스 ").append(index).append(": ");
                         sb.append(correct ? "정답" : "오답").append("\n");
-                        sb.append("\t- 실행 결과: \t").append(answer).append("\n");
-                        sb.append("\t- 기댓값: \t").append(result).append("\n");
+                        sb.append("\t- 실행 결과: \t").append(result).append("\n");
+                        sb.append("\t- 기댓값: \t").append(answer).append("\n");
                         if (correct) System.out.println(sb);
                         else throw new RuntimeException(sb.toString());
                     }
@@ -507,19 +507,19 @@ class ContentServiceTest {
                         val sb = StringBuilder()
                         sb.append("\n\n테스트 케이스 ").append(index).append(": ")
                         sb.append(if (correct) "정답" else "오답").append("\n")
-                        sb.append("\t- 실행 결과: \t").append(answer).append("\n")
-                        sb.append("\t- 기댓값: \t").append(result).append("\n")
+                        sb.append("\t- 실행 결과: \t").append(result).append("\n")
+                        sb.append("\t- 기댓값: \t").append(answer).append("\n")
                         if (correct) println(sb) else throw RuntimeException(sb.toString())
                     }
                 
                     val i1 = 3
-                    val result1 = 1
-                    val answer1 = n2배열자르기().solution(i1)
+                    val answer1 = 1
+                    val result1 = n2배열자르기().solution(i1)
                     printResult(1, result1, answer1)
                 
                     val i2 = 12
-                    val result2 = 40
-                    val answer2 = n2배열자르기().solution(i2)
+                    val answer2 = 40
+                    val result2 = n2배열자르기().solution(i2)
                     printResult(2, result2, answer2)
                 }
                 

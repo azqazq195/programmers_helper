@@ -11,7 +11,7 @@ data class JavaTemplateDto(
 ) : ITemplateDto {
     data class TestCaseDto(
         val values: List<Value>,
-        val result: Value,
+        val answer: Value,
     )
 
     data class Value(

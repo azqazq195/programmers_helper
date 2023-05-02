@@ -5,7 +5,9 @@ import com.moseoh.programmers_helper.settings.model.ProgrammersHelperSettings
 data class ProblemDto(
     val title: String,
     val content: String,
-    val testCases: List<Map<String, String>>
+    val testCases: List<Map<String, String>>,
+    // 프로그래머스 테스트 케이스의 마지막 column 이 정답인데 answer, result 등 통일되지 않아 answerName 에 어떻게 넘어오는지 담는다.
+    val answerName: String
 ) {
     private val settings = ProgrammersHelperSettings.instance
 

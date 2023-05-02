@@ -24,7 +24,8 @@ class TestData {
                         "i" to "12",
                         "result" to "40",
                     ),
-                )
+                ),
+                answerName = "result"
             )
         }
 
@@ -48,7 +49,8 @@ class TestData {
                         "i" to "12",
                         "result" to "[10, 42]",
                     ),
-                )
+                ),
+                answerName = "result"
             )
         }
 
@@ -72,7 +74,8 @@ class TestData {
                         "i" to "12",
                         "result" to "[[\"str1\", \"str2\", \"str3\"], [\"str4\"]]",
                     ),
-                )
+                ),
+                answerName = "result"
             )
         }
 
@@ -96,7 +99,8 @@ class TestData {
                         "i" to "12",
                         "result" to "40",
                     ),
-                )
+                ),
+                answerName = "result"
             )
         }
 
@@ -120,7 +124,8 @@ class TestData {
                         "i" to "12",
                         "result" to "str22",
                     ),
-                )
+                ),
+                answerName = "result"
             )
         }
 
@@ -144,7 +149,8 @@ class TestData {
                         "i" to "12",
                         "result" to "[10, 42]",
                     ),
-                )
+                ),
+                answerName = "result"
             )
         }
 
@@ -168,7 +174,8 @@ class TestData {
                         "i" to "12",
                         "result" to "[[\"str1\", \"str2\", \"str3\"], [\"str4\"]]",
                     ),
-                )
+                ),
+                answerName = "result"
             )
         }
 

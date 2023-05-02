@@ -43,17 +43,18 @@ class KotlinTemplateMapper(
         val valueTypeMap = extractParamTypes(problemDto.content).toMutableMap()
         val returnType = extractReturnType(problemDto.content)
 
-        return problemDto.testCases.map { getTestCaseDto(it, valueTypeMap, returnType) }.toList()
+        return problemDto.testCases.map { getTestCaseDto(it, valueTypeMap, returnType, problemDto.answerName) }.toList()
     }
 
     private fun getTestCaseDto(
         testCase: Map<String, String>,
         valueTypeMap: Map<String, String>,
-        returnType: String
+        returnType: String,
+        answerName: String
     ): KotlinTemplateDto.TestCaseDto {
         val values = mutableListOf<KotlinTemplateDto.Value>()
         testCase.forEach {
-            if (it.key != "result") {
+            if (it.key != answerName) {
                 values.add(
                     KotlinTemplateDto.Value(
                         valueTypeMap[it.key]!!,
@@ -68,8 +69,8 @@ class KotlinTemplateMapper(
             values,
             KotlinTemplateDto.Value(
                 returnType,
-                "result",
-                getValue(returnType, testCase["result"]!!)
+                answerName,
+                getValue(returnType, testCase[answerName]!!)
             )
         )
     }

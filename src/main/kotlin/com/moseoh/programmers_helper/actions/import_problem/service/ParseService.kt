@@ -4,6 +4,7 @@ import com.intellij.openapi.components.Service
 import com.moseoh.programmers_helper.actions.import_problem.service.dto.ProblemDto
 import com.moseoh.programmers_helper.settings.model.ProgrammersHelperSettings
 import org.jsoup.nodes.Document
+import org.jsoup.nodes.Element
 
 
 @Service
@@ -27,7 +28,8 @@ class ParseService(
         return ProblemDto(
             parseTitle(document),
             parseContent(document),
-            parseTestCases(document)
+            parseTestCases(document),
+            parseAnswerName(document)
         )
     }
 
@@ -40,14 +42,9 @@ class ParseService(
     }
 
     private fun parseTestCases(document: Document): List<Map<String, String>> {
-        // 입출력 예제 div 찾기
-        val h5Element =
-            document.select("h5:containsOwn(입출력 예), h5:has(strong:containsOwn(입출력 예))").first()
-                ?: document.select("h3:containsOwn(입출력 예제), h3:has(strong:containsOwn(입출력 예제))").first()
-                ?: document.select("h3:containsOwn(예제 입출력), h3:has(strong:containsOwn(예제 입출력))").first()
-        val tableElement = h5Element!!.nextElementSibling()
+        val tableElement = findTestCaseTable(document)
 
-        val tableHeaders = tableElement!!.select("thead > tr > th")
+        val tableHeaders = tableElement.select("thead > tr > th")
         val tableRows = tableElement.select("tbody > tr")
 
         return tableRows.map { row ->
@@ -56,5 +53,20 @@ class ParseService(
                 tableHeaders[index].text() to td.text().toString()
             }.toMap()
         }.toList()
+    }
+
+    private fun parseAnswerName(document: Document): String {
+        val tableElement = findTestCaseTable(document)
+        val tableHeaders = tableElement.select("thead > tr > th")
+        return tableHeaders.last()!!.text()
+    }
+
+    private fun findTestCaseTable(document: Document): Element {
+        // 입출력 예제 div 찾기
+        val h5Element =
+            document.select("h5:containsOwn(입출력 예), h5:has(strong:containsOwn(입출력 예))").first()
+                ?: document.select("h3:containsOwn(입출력 예제), h3:has(strong:containsOwn(입출력 예제))").first()
+                ?: document.select("h3:containsOwn(예제 입출력), h3:has(strong:containsOwn(예제 입출력))").first()
+        return h5Element!!.nextElementSibling()!!
     }
 }
