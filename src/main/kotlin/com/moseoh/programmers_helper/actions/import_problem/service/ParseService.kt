@@ -10,7 +10,7 @@ import org.jsoup.nodes.Element
 
 @Service
 class ParseService(
-    private val settings: ProgrammersHelperSettings = ProgrammersHelperSettings.instance
+    private val settings: ProgrammersHelperSettings.State = ProgrammersHelperSettings.state
 ) {
 
     fun getUrl(urlInput: String): String {

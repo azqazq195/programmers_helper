@@ -13,7 +13,7 @@ import com.moseoh.programmers_helper.settings.model.ProgrammersHelperSettings
 
 @Service
 class ContentService(
-    private val settings: ProgrammersHelperSettings = ProgrammersHelperSettings.instance,
+    private val settings: ProgrammersHelperSettings.State = ProgrammersHelperSettings.state,
     private val javaTemplateMapper: JavaTemplateMapper = service<JavaTemplateMapper>(),
     private val kotlinTemplateMapper: KotlinTemplateMapper = service<KotlinTemplateMapper>()
 ) {

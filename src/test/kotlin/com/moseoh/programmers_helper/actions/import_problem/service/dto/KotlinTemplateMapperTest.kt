@@ -13,8 +13,8 @@ class KotlinTemplateMapperTest {
     @Before
     fun setUp() {
         mockkObject(ProgrammersHelperSettings)
-        every { ProgrammersHelperSettings.instance } returns ProgrammersHelperSettings()
-        kotlinTemplateMapper = KotlinTemplateMapper(ProgrammersHelperSettings.instance)
+        every { ProgrammersHelperSettings.state } returns ProgrammersHelperSettings.State()
+        kotlinTemplateMapper = KotlinTemplateMapper(ProgrammersHelperSettings.state)
     }
 
     @Test

@@ -13,7 +13,7 @@ import java.io.IOException
 
 @Service
 class FileService {
-    private val settings = ProgrammersHelperSettings.instance
+    private val settings = ProgrammersHelperSettings.state
     private val contentService = service<ContentService>()
 
     fun createFile(project: Project, parentDirectory: VirtualFile, problemDto: ProblemDto): File? {

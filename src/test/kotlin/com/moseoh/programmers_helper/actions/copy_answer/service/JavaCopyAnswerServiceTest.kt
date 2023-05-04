@@ -14,15 +14,15 @@ class JavaCopyAnswerServiceTest {
 
     private fun mocking(useMainFunction: Boolean, allowCopyComment: Boolean) {
         mockkObject(ProgrammersHelperSettings)
-        every { ProgrammersHelperSettings.instance } returns ProgrammersHelperSettings()
-        every { ProgrammersHelperSettings.instance.language } returns Language.Java
-        every { ProgrammersHelperSettings.instance.useFolder } returns false
-        every { ProgrammersHelperSettings.instance.useNameSpacing } returns false
-        every { ProgrammersHelperSettings.instance.useMainFunction } returns useMainFunction
-        every { ProgrammersHelperSettings.instance.useHelpComment } returns true
-        every { ProgrammersHelperSettings.instance.allowCopyComment } returns allowCopyComment
-        
-        javaCopyAnswerService = JavaCopyAnswerService(ProgrammersHelperSettings.instance)
+        every { ProgrammersHelperSettings.state } returns ProgrammersHelperSettings.State()
+        every { ProgrammersHelperSettings.state.language } returns Language.Java
+        every { ProgrammersHelperSettings.state.useFolder } returns false
+        every { ProgrammersHelperSettings.state.useNameSpacing } returns false
+        every { ProgrammersHelperSettings.state.useMainFunction } returns useMainFunction
+        every { ProgrammersHelperSettings.state.useHelpComment } returns true
+        every { ProgrammersHelperSettings.state.allowCopyComment } returns allowCopyComment
+
+        javaCopyAnswerService = JavaCopyAnswerService(ProgrammersHelperSettings.state)
     }
 
     @Test

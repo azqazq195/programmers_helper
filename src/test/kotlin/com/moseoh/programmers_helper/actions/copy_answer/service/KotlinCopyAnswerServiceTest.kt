@@ -15,15 +15,15 @@ class KotlinCopyAnswerServiceTest {
 
     private fun mocking(useMainFunction: Boolean, allowCopyComment: Boolean) {
         mockkObject(ProgrammersHelperSettings)
-        every { ProgrammersHelperSettings.instance } returns ProgrammersHelperSettings()
-        every { ProgrammersHelperSettings.instance.language } returns Language.Kotlin
-        every { ProgrammersHelperSettings.instance.useFolder } returns false
-        every { ProgrammersHelperSettings.instance.useNameSpacing } returns false
-        every { ProgrammersHelperSettings.instance.useMainFunction } returns useMainFunction
-        every { ProgrammersHelperSettings.instance.useHelpComment } returns true
-        every { ProgrammersHelperSettings.instance.allowCopyComment } returns allowCopyComment
+        every { ProgrammersHelperSettings.state } returns ProgrammersHelperSettings.State()
+        every { ProgrammersHelperSettings.state.language } returns Language.Kotlin
+        every { ProgrammersHelperSettings.state.useFolder } returns false
+        every { ProgrammersHelperSettings.state.useNameSpacing } returns false
+        every { ProgrammersHelperSettings.state.useMainFunction } returns useMainFunction
+        every { ProgrammersHelperSettings.state.useHelpComment } returns true
+        every { ProgrammersHelperSettings.state.allowCopyComment } returns allowCopyComment
 
-        kotlinCopyAnswerService = KotlinCopyAnswerService(ProgrammersHelperSettings.instance)
+        kotlinCopyAnswerService = KotlinCopyAnswerService(ProgrammersHelperSettings.state)
     }
 
     @Test

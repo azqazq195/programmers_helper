@@ -23,7 +23,7 @@ class CopyAnswerAction : AnAction(
     lazy("copyAnswerDescription"),
     null
 ) {
-    private val settings = ProgrammersHelperSettings.instance
+    private val settings = ProgrammersHelperSettings.state
     private val javaCopyAnswerService = service<JavaCopyAnswerService>()
     private val kotlinCopyAnswerService = service<KotlinCopyAnswerService>()
 

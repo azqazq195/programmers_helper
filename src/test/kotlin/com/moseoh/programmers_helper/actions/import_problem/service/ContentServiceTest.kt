@@ -24,12 +24,12 @@ class ContentServiceTest {
 
     private fun mocking(language: Language, useHelpComment: Boolean = false) {
         mockkObject(ProgrammersHelperSettings)
-        every { ProgrammersHelperSettings.instance } returns ProgrammersHelperSettings()
-        every { ProgrammersHelperSettings.instance.language } returns language
-        every { ProgrammersHelperSettings.instance.useFolder } returns false
-        every { ProgrammersHelperSettings.instance.useNameSpacing } returns false
-        every { ProgrammersHelperSettings.instance.useMainFunction } returns true
-        every { ProgrammersHelperSettings.instance.useHelpComment } returns useHelpComment
+        every { ProgrammersHelperSettings.state } returns ProgrammersHelperSettings.State()
+        every { ProgrammersHelperSettings.state.language } returns language
+        every { ProgrammersHelperSettings.state.useFolder } returns false
+        every { ProgrammersHelperSettings.state.useNameSpacing } returns false
+        every { ProgrammersHelperSettings.state.useMainFunction } returns true
+        every { ProgrammersHelperSettings.state.useHelpComment } returns useHelpComment
 
         every { project.basePath } returns "src"
         every { directory.path } returns "src/com/moseoh/example"
@@ -41,9 +41,9 @@ class ContentServiceTest {
     fun `get java primitive 타입 반환`() {
         // given
         mocking(Language.Java)
-        javaTemplateMapper = JavaTemplateMapper(ProgrammersHelperSettings.instance)
-        kotlinTemplateMapper = KotlinTemplateMapper(ProgrammersHelperSettings.instance)
-        contentService = ContentService(ProgrammersHelperSettings.instance, javaTemplateMapper, kotlinTemplateMapper)
+        javaTemplateMapper = JavaTemplateMapper(ProgrammersHelperSettings.state)
+        kotlinTemplateMapper = KotlinTemplateMapper(ProgrammersHelperSettings.state)
+        contentService = ContentService(ProgrammersHelperSettings.state, javaTemplateMapper, kotlinTemplateMapper)
         val problem = TestData.problemDto_java_returnPrimitive()
 
         // when
@@ -92,9 +92,9 @@ class ContentServiceTest {
     fun `get java String 타입 반환`() {
         // given
         mocking(Language.Java)
-        javaTemplateMapper = JavaTemplateMapper(ProgrammersHelperSettings.instance)
-        kotlinTemplateMapper = KotlinTemplateMapper(ProgrammersHelperSettings.instance)
-        contentService = ContentService(ProgrammersHelperSettings.instance, javaTemplateMapper, kotlinTemplateMapper)
+        javaTemplateMapper = JavaTemplateMapper(ProgrammersHelperSettings.state)
+        kotlinTemplateMapper = KotlinTemplateMapper(ProgrammersHelperSettings.state)
+        contentService = ContentService(ProgrammersHelperSettings.state, javaTemplateMapper, kotlinTemplateMapper)
         val problem = TestData.problemDto_java_returnString()
 
         // when
@@ -143,9 +143,9 @@ class ContentServiceTest {
     fun `get java 배열 타입 반환`() {
         // given
         mocking(Language.Java)
-        javaTemplateMapper = JavaTemplateMapper(ProgrammersHelperSettings.instance)
-        kotlinTemplateMapper = KotlinTemplateMapper(ProgrammersHelperSettings.instance)
-        contentService = ContentService(ProgrammersHelperSettings.instance, javaTemplateMapper, kotlinTemplateMapper)
+        javaTemplateMapper = JavaTemplateMapper(ProgrammersHelperSettings.state)
+        kotlinTemplateMapper = KotlinTemplateMapper(ProgrammersHelperSettings.state)
+        contentService = ContentService(ProgrammersHelperSettings.state, javaTemplateMapper, kotlinTemplateMapper)
         val problem = TestData.problemDto_java_returnArray()
 
         // when
@@ -196,9 +196,9 @@ class ContentServiceTest {
     fun `get java 2차원 배열 타입 반환`() {
         // given
         mocking(Language.Java)
-        javaTemplateMapper = JavaTemplateMapper(ProgrammersHelperSettings.instance)
-        kotlinTemplateMapper = KotlinTemplateMapper(ProgrammersHelperSettings.instance)
-        contentService = ContentService(ProgrammersHelperSettings.instance, javaTemplateMapper, kotlinTemplateMapper)
+        javaTemplateMapper = JavaTemplateMapper(ProgrammersHelperSettings.state)
+        kotlinTemplateMapper = KotlinTemplateMapper(ProgrammersHelperSettings.state)
+        contentService = ContentService(ProgrammersHelperSettings.state, javaTemplateMapper, kotlinTemplateMapper)
         val problem = TestData.problemDto_java_returnArrayArray()
 
         // when
@@ -249,9 +249,9 @@ class ContentServiceTest {
     fun `get kotlin 일반 타입 반환`() {
         // given
         mocking(Language.Kotlin)
-        javaTemplateMapper = JavaTemplateMapper(ProgrammersHelperSettings.instance)
-        kotlinTemplateMapper = KotlinTemplateMapper(ProgrammersHelperSettings.instance)
-        contentService = ContentService(ProgrammersHelperSettings.instance, javaTemplateMapper, kotlinTemplateMapper)
+        javaTemplateMapper = JavaTemplateMapper(ProgrammersHelperSettings.state)
+        kotlinTemplateMapper = KotlinTemplateMapper(ProgrammersHelperSettings.state)
+        contentService = ContentService(ProgrammersHelperSettings.state, javaTemplateMapper, kotlinTemplateMapper)
         val problem = TestData.problemDto_kotlin_returnSingle()
 
         // when
@@ -299,9 +299,9 @@ class ContentServiceTest {
     fun `get kotlin 배열 타입 반환`() {
         // given
         mocking(Language.Kotlin)
-        javaTemplateMapper = JavaTemplateMapper(ProgrammersHelperSettings.instance)
-        kotlinTemplateMapper = KotlinTemplateMapper(ProgrammersHelperSettings.instance)
-        contentService = ContentService(ProgrammersHelperSettings.instance, javaTemplateMapper, kotlinTemplateMapper)
+        javaTemplateMapper = JavaTemplateMapper(ProgrammersHelperSettings.state)
+        kotlinTemplateMapper = KotlinTemplateMapper(ProgrammersHelperSettings.state)
+        contentService = ContentService(ProgrammersHelperSettings.state, javaTemplateMapper, kotlinTemplateMapper)
         val problem = TestData.problemDto_kotlin_returnArray()
 
         // when
@@ -349,9 +349,9 @@ class ContentServiceTest {
     fun `get kotlin 2차원 배열 타입 반환`() {
         // given
         mocking(Language.Kotlin)
-        javaTemplateMapper = JavaTemplateMapper(ProgrammersHelperSettings.instance)
-        kotlinTemplateMapper = KotlinTemplateMapper(ProgrammersHelperSettings.instance)
-        contentService = ContentService(ProgrammersHelperSettings.instance, javaTemplateMapper, kotlinTemplateMapper)
+        javaTemplateMapper = JavaTemplateMapper(ProgrammersHelperSettings.state)
+        kotlinTemplateMapper = KotlinTemplateMapper(ProgrammersHelperSettings.state)
+        contentService = ContentService(ProgrammersHelperSettings.state, javaTemplateMapper, kotlinTemplateMapper)
         val problem = TestData.problemDto_kotlin_returnArrayArray()
 
         // when
@@ -399,9 +399,9 @@ class ContentServiceTest {
     fun `get java 도움말 주석`() {
         // given
         mocking(Language.Java, true)
-        javaTemplateMapper = JavaTemplateMapper(ProgrammersHelperSettings.instance)
-        kotlinTemplateMapper = KotlinTemplateMapper(ProgrammersHelperSettings.instance)
-        contentService = ContentService(ProgrammersHelperSettings.instance, javaTemplateMapper, kotlinTemplateMapper)
+        javaTemplateMapper = JavaTemplateMapper(ProgrammersHelperSettings.state)
+        kotlinTemplateMapper = KotlinTemplateMapper(ProgrammersHelperSettings.state)
+        contentService = ContentService(ProgrammersHelperSettings.state, javaTemplateMapper, kotlinTemplateMapper)
         val problem = TestData.problemDto_java_returnPrimitive()
 
         // when
@@ -471,9 +471,9 @@ class ContentServiceTest {
     fun `get kotlin 도움말 주석`() {
         // given
         mocking(Language.Kotlin, true)
-        javaTemplateMapper = JavaTemplateMapper(ProgrammersHelperSettings.instance)
-        kotlinTemplateMapper = KotlinTemplateMapper(ProgrammersHelperSettings.instance)
-        contentService = ContentService(ProgrammersHelperSettings.instance, javaTemplateMapper, kotlinTemplateMapper)
+        javaTemplateMapper = JavaTemplateMapper(ProgrammersHelperSettings.state)
+        kotlinTemplateMapper = KotlinTemplateMapper(ProgrammersHelperSettings.state)
+        contentService = ContentService(ProgrammersHelperSettings.state, javaTemplateMapper, kotlinTemplateMapper)
         val problem = TestData.problemDto_kotlin_returnSingle()
 
         // when

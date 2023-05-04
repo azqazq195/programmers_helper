@@ -43,7 +43,7 @@ class ImportProblemAction : AnAction(
 
     private fun getProblem(
         event: AnActionEvent,
-        useClipboard: Boolean = ProgrammersHelperSettings.instance.useClipboard
+        useClipboard: Boolean = ProgrammersHelperSettings.state.useClipboard
     ): ProblemDto? {
         val urlInput = urlInput(event, useClipboard) ?: return null
         val url = parseService.getUrl(urlInput)
