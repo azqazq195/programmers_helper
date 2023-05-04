@@ -38,20 +38,10 @@
     -->
 
     <change-notes><![CDATA[
-        <h2>New Features</h2>
-        <ul>
-          <li>Copy comment optional</li>
-          <li>Help comment</li>
-        </ul>
-        <h2>Improvements</h2>
-        <ul>
-          <li>Use Freemarker template</li>
-          <li>Enhanced exception messages</li>
-          <li>Support for parsing older problems</li>
-        </ul>
         <h2>Bug Fixes</h2>
         <ul>
-          <li>bug fixes</li>
+          <li>Fixed the issue where the spaces in the comments were not displayed properly.</li>
+          <li>Fixed the issue where the settings were not being saved.</li>
         </ul>
     ]]>
     </change-notes>
