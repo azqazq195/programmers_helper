@@ -27,7 +27,7 @@ abstract class DynamicPluginBundle(@NotNull pathToBundle: @NonNls String) :
                 localizedPath,
                 DynamicPluginBundle::class.java.classLoader, control
             )
-            if (localeBundle != null && base != localeBundle) {
+            if (base != localeBundle) {
                 setParent(localeBundle, base)
                 return localeBundle
             }
