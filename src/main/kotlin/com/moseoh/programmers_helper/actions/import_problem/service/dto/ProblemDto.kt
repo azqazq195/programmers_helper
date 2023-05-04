@@ -9,7 +9,7 @@ data class ProblemDto(
     // 프로그래머스 테스트 케이스의 마지막 column 이 정답인데 answer, result 등 통일되지 않아 answerName 에 어떻게 넘어오는지 담는다.
     val answerName: String
 ) {
-    private val settings = ProgrammersHelperSettings.instance
+    private val settings = ProgrammersHelperSettings.state
 
     fun getDirectoryName(): String {
         val replaceChar = if (settings.useNameSpacing) "_" else ""

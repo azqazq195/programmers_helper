@@ -13,8 +13,8 @@ class JavaTemplateMapperTest {
     @Before
     fun setUp() {
         mockkObject(ProgrammersHelperSettings)
-        every { ProgrammersHelperSettings.instance } returns ProgrammersHelperSettings()
-        javaTemplateMapper = JavaTemplateMapper(ProgrammersHelperSettings.instance)
+        every { ProgrammersHelperSettings.state } returns ProgrammersHelperSettings.State()
+        javaTemplateMapper = JavaTemplateMapper(ProgrammersHelperSettings.state)
     }
 
     @Test

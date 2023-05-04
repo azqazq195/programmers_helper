@@ -13,7 +13,7 @@ import org.jetbrains.annotations.Nls
 import javax.swing.JComponent
 
 class LanguageConfigurable : Configurable {
-    private val settings = ProgrammersHelperSettings.instance
+    private val settings = ProgrammersHelperSettings.state
 
     private val languageComboBox = ComboBox(Language.values())
     private val useClipboardCheckBox = CheckBox(get("useClipboardCheckBox"))

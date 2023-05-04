@@ -9,7 +9,7 @@ import com.moseoh.programmers_helper.settings.model.ProgrammersHelperSettings
 
 @Service
 class JavaCopyAnswerService(
-    private val settings: ProgrammersHelperSettings = ProgrammersHelperSettings.instance,
+    private val settings: ProgrammersHelperSettings.State = ProgrammersHelperSettings.state,
 ) : ICopyAnswerService {
     override fun convert(code: String): String {
         var lines = code.lines()

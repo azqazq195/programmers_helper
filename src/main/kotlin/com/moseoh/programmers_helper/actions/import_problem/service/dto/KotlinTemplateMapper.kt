@@ -6,7 +6,7 @@ import com.moseoh.programmers_helper.settings.model.ProgrammersHelperSettings
 
 @Service
 class KotlinTemplateMapper(
-    private val settings: ProgrammersHelperSettings = ProgrammersHelperSettings.instance
+    private val settings: ProgrammersHelperSettings.State = ProgrammersHelperSettings.state
 ) {
     fun toDto(projectPath: String, directoryPath: String, problemDto: ProblemDto): KotlinTemplateDto {
         return KotlinTemplateDto(
