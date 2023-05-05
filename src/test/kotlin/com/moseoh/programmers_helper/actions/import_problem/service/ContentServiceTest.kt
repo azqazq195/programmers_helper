@@ -318,8 +318,8 @@ class ContentServiceTest {
                         val sb = StringBuilder()
                         sb.append("\n\n테스트 케이스 ").append(index).append(": ")
                         sb.append(if (correct) "정답" else "오답").append("\n")
-                        sb.append("\t- 실행 결과: \t").append(result).append("\n")
-                        sb.append("\t- 기댓값: \t").append(answer).append("\n")
+                        sb.append("\t- 실행 결과: \t").append(result.contentToString()).append("\n")
+                        sb.append("\t- 기댓값: \t").append(answer.contentToString()).append("\n")
                         if (correct) println(sb) else throw RuntimeException(sb.toString())
                     }
                 
@@ -368,8 +368,8 @@ class ContentServiceTest {
                         val sb = StringBuilder()
                         sb.append("\n\n테스트 케이스 ").append(index).append(": ")
                         sb.append(if (correct) "정답" else "오답").append("\n")
-                        sb.append("\t- 실행 결과: \t").append(result).append("\n")
-                        sb.append("\t- 기댓값: \t").append(answer).append("\n")
+                        sb.append("\t- 실행 결과: \t").append(result.contentDeepToString()).append("\n")
+                        sb.append("\t- 기댓값: \t").append(answer.contentDeepToString()).append("\n")
                         if (correct) println(sb) else throw RuntimeException(sb.toString())
                     }
                 
