@@ -40,8 +40,7 @@
     <change-notes><![CDATA[
         <h2>Bug Fixes</h2>
         <ul>
-          <li>Fixed the issue where the spaces in the comments were not displayed properly.</li>
-          <li>Fixed the issue where the settings were not being saved.</li>
+          <li>Added logic for array output that was previously missing.</li>
         </ul>
     ]]>
     </change-notes>
