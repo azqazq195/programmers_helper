@@ -2,7 +2,6 @@ package com.moseoh.programmers_helper.actions.import_problem.service.dto
 
 data class JavaTemplateDto(
     val packagePath: String,
-    val useImportArray: Boolean,
     val useMain: Boolean,
     val helpComment: String?,
     val className: String,

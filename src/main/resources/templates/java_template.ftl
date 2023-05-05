@@ -1,8 +1,9 @@
+<#assign answerType = dto.testCaseDtos[0].answer.type>
 <#if dto.packagePath?has_content>
 package ${dto.packagePath};
 
 </#if>
-<#if dto.useImportArray>
+<#if answerType?contains("[][]") || answerType?contains("[]")>
 import java.util.Arrays;
 
 </#if>
@@ -27,12 +28,12 @@ class ${dto.className} {
     </#list>
     }
 
-    public static void PRINT_RESULT(int index, ${dto.testCaseDtos[0].answer.type} result, ${dto.testCaseDtos[0].answer.type} answer) {
-        <#if dto.testCaseDtos[0].answer.type?contains("[][]")>
+    public static void PRINT_RESULT(int index, ${answerType} result, ${answerType} answer) {
+        <#if answerType?contains("[][]")>
         boolean correct = Arrays.deepEquals(result, answer);
-        <#elseif dto.testCaseDtos[0].answer.type?contains("[]")>
+        <#elseif answerType?contains("[]")>
         boolean correct = Arrays.equals(result, answer);
-        <#elseif dto.testCaseDtos[0].answer.type == "String">
+        <#elseif answerType == "String">
         boolean correct = result.equals(answer);
         <#else>
         boolean correct = result == answer;
@@ -40,8 +41,16 @@ class ${dto.className} {
         StringBuilder sb = new StringBuilder();
         sb.append("\n\n테스트 케이스 ").append(index).append(": ");
         sb.append(correct ? "정답" : "오답").append("\n");
+        <#if answerType?contains("[][]")>
+        sb.append("\t- 실행 결과: \t").append(Arrays.deepToString(result)).append("\n");
+        sb.append("\t- 기댓값: \t").append(Arrays.deepToString(answer)).append("\n");
+        <#elseif answerType?contains("[]")>
+        sb.append("\t- 실행 결과: \t").append(Arrays.toString(result)).append("\n");
+        sb.append("\t- 기댓값: \t").append(Arrays.toString(answer)).append("\n");
+        <#else>
         sb.append("\t- 실행 결과: \t").append(result).append("\n");
         sb.append("\t- 기댓값: \t").append(answer).append("\n");
+        </#if>
         if (correct) System.out.println(sb);
         else throw new RuntimeException(sb.toString());
     }

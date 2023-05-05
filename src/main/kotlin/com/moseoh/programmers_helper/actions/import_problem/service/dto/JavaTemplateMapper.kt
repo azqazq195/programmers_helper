@@ -11,7 +11,6 @@ class JavaTemplateMapper(
     fun toDto(projectPath: String, directoryPath: String, problemDto: ProblemDto): JavaTemplateDto {
         return JavaTemplateDto(
             packagePath = getPackagePath(projectPath, directoryPath),
-            useImportArray = useImportArray(problemDto),
             useMain = settings.useMainFunction,
             helpComment = getHelpComment(),
             className = problemDto.getClassName(),
@@ -23,10 +22,6 @@ class JavaTemplateMapper(
     private fun getPackagePath(projectPath: String, directoryPath: String): String {
         val packagePath = directoryPath.substring(directoryPath.indexOf(projectPath) + projectPath.length + 1)
         return packagePath.replace('/', '.')
-    }
-
-    private fun useImportArray(problemDto: ProblemDto): Boolean {
-        return extractReturnType(problemDto.content).contains("[]")
     }
 
     private fun getHelpComment(): String? {
