@@ -1,17 +1,18 @@
 package com.moseoh.programmers_helper._common
 
+import com.intellij.AbstractBundle
 import org.jetbrains.annotations.NotNull
 import org.jetbrains.annotations.PropertyKey
 import java.util.function.Supplier
 
 
-object PluginBundle : DynamicPluginBundle("messages.messages") {
+object PluginBundle : AbstractBundle("messages.messages") {
     @NotNull
     operator fun get(
         @NotNull @PropertyKey(resourceBundle = "messages.messages") key: String,
         vararg params: @NotNull Any?
     ): String {
-        return this.getMessage(key, *params)
+        return getMessage(key, *params)
     }
 
     @NotNull
@@ -19,6 +20,6 @@ object PluginBundle : DynamicPluginBundle("messages.messages") {
         @NotNull @PropertyKey(resourceBundle = "messages.messages") key: String,
         vararg params: @NotNull Any?
     ): Supplier<String> {
-        return this.getLazyMessage(key, *params)
+        return getLazyMessage(key, *params)
     }
 }
