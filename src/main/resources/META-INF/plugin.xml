@@ -38,9 +38,9 @@
     -->
 
     <change-notes><![CDATA[
-        <h2>Bug Fixes</h2>
+        <h2>Added</h2>
         <ul>
-          <li>Added logic for array output that was previously missing.</li>
+          <li>Initial release of Programmers Helper 0.0.10 with support for IntelliJ IDEA Ultimate IU-232.6095.10.</li>
         </ul>
     ]]>
     </change-notes>
@@ -48,6 +48,8 @@
     <!-- Product and plugin compatibility requirements.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
+
+    <resource-bundle>messages.messages</resource-bundle>
 
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
