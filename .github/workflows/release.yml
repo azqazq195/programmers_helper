@@ -28,9 +28,12 @@ jobs:
         with:
           cache-key-prefix: gradle
 
-      - name: Build and Test
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Build
         run: ./gradlew build
-        
+
       - name: Publish Test Results
         uses: EnricoMi/publish-unit-test-result-action@v2
         if: always()
