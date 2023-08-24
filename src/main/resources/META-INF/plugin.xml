@@ -38,9 +38,9 @@
     -->
 
     <change-notes><![CDATA[
-        <h2>Added</h2>
+        <h2>Fixed</h2>
         <ul>
-          <li>Initial release of Programmers Helper 0.0.10 with support for IntelliJ IDEA Ultimate IU-232.6095.10.</li>
+          <li>Initial release of Programmers Helper 0.0.12 with support for IntelliJ IDEA Ultimate 2023.2.1</li>
         </ul>
     ]]>
     </change-notes>
