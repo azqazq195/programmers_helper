@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.moseoh"
-version = "0.0.12"
+version = "0.0.13"
 
 repositories {
     mavenCentral()
@@ -38,7 +38,7 @@ tasks {
     }
 
     patchPluginXml {
-        sinceBuild.set("222")
+        sinceBuild.set("231")
         untilBuild.set("232.*")
     }
 

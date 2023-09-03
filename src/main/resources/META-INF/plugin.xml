@@ -25,22 +25,10 @@
     <p>Please note that this plugin is specifically designed for Java and Kotlin languages, and there are no plans to support additional languages in the future. Boost your productivity and enhance your problem-solving experience on the Programmers platform with the Programmers Helper plugin.</p>
   ]]></description>
 
-    <!--
-    <h2>New Features</h2>
-    <ul>
-        <li>Logo</li>
-    </ul>
-    <h2>Bug Fixes</h2>
-    <ul>
-        <li>Fixed issue 1</li>
-        <li>Fixed issue 2</li>
-    </ul>
-    -->
-
     <change-notes><![CDATA[
-        <h2>Fixed</h2>
+        <h2>Compatibility Notes</h2>
         <ul>
-          <li>Initial release of Programmers Helper 0.0.12 with support for IntelliJ IDEA Ultimate 2023.2.1</li>
+            <li>Support for IntelliJ IDEA Ultimate versions prior to 231 are no longer provided.</li>
         </ul>
     ]]>
     </change-notes>
