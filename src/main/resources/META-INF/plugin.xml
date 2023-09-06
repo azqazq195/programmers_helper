@@ -26,9 +26,9 @@
   ]]></description>
 
     <change-notes><![CDATA[
-        <h2>Compatibility Notes</h2>
+        <h2>Fixed</h2>
         <ul>
-            <li>Support for IntelliJ IDEA Ultimate versions prior to 231 are no longer provided.</li>
+            <li>'displayName' attribute issue in 'LanguageConfigurable'.</li>
         </ul>
     ]]>
     </change-notes>
@@ -44,6 +44,7 @@
     <extensions defaultExtensionNs="com.intellij">
         <notificationGroup id="Programmers Helper.Notification" displayType="BALLOON" isLogByDefault="true"/>
         <applicationConfigurable
+                key="displayName"
                 parentId="tools"
                 id="com.moseoh.programmers_helper.settings.ui.LanguageConfigurable"
                 instance="com.moseoh.programmers_helper.settings.ui.LanguageConfigurable"
