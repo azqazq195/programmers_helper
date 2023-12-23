@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.moseoh"
-version = "0.0.14"
+version = "0.0.15"
 
 repositories {
     mavenCentral()
