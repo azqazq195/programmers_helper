@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.moseoh"
-version = "0.0.15"
+version = "0.0.16"
 
 repositories {
     mavenCentral()
@@ -39,7 +39,7 @@ tasks {
 
     patchPluginXml {
         sinceBuild.set("231")
-        untilBuild.set("233.*")
+        untilBuild.set("241.*")
     }
 
     signPlugin {
