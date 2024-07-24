@@ -20,12 +20,13 @@ import org.jsoup.HttpStatusException
 import org.jsoup.Jsoup
 import java.awt.Toolkit
 import java.awt.datatransfer.DataFlavor
+import java.util.function.Supplier
 
 
 class ImportProblemAction : AnAction(
     lazy("importProblem"),
     lazy("importProblemDescription"),
-    null
+    Supplier { null }
 ) {
     private val parseService = service<ParseService>()
     private val fileService = service<FileService>()
@@ -37,7 +38,8 @@ class ImportProblemAction : AnAction(
         val file = fileService.createFile(project, directory, problem) ?: return
         val virtualFile = LocalFileSystem.getInstance().refreshAndFindFileByIoFile(file)
         virtualFile?.let {
-            FileEditorManager.getInstance(project).openTextEditor(OpenFileDescriptor(project, virtualFile), true)
+            FileEditorManager.getInstance(project)
+                .openTextEditor(OpenFileDescriptor(project, virtualFile), true)
         }
     }
 

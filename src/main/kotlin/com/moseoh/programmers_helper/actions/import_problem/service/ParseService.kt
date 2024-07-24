@@ -35,7 +35,12 @@ class ParseService(
     }
 
     private fun parseTitle(document: Document): String {
-        return document.select("li.algorithm-title").text()
+        val title = document.select("li.algorithm-title").text()
+        return if (title.isNullOrEmpty()) {
+            document.select("div.algorithm-title").text()
+        } else {
+            title
+        }
     }
 
     private fun parseContent(document: Document): String {
@@ -69,8 +74,10 @@ class ParseService(
         // 입출력 예제 div 찾기
         val h5Element =
             document.select("h5:containsOwn(입출력 예), h5:has(strong:containsOwn(입출력 예))").first()
-                ?: document.select("h3:containsOwn(입출력 예제), h3:has(strong:containsOwn(입출력 예제))").first()
-                ?: document.select("h3:containsOwn(예제 입출력), h3:has(strong:containsOwn(예제 입출력))").first()
+                ?: document.select("h3:containsOwn(입출력 예제), h3:has(strong:containsOwn(입출력 예제))")
+                    .first()
+                ?: document.select("h3:containsOwn(예제 입출력), h3:has(strong:containsOwn(예제 입출력))")
+                    .first()
 
         if (h5Element!!.nextElementSibling() == null) throw CException("테스트 케이스를 찾을 수 없습니다.")
         return h5Element.nextElementSibling()!!
