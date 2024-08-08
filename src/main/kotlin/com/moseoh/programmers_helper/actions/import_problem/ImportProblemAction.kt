@@ -23,8 +23,8 @@ import java.awt.datatransfer.DataFlavor
 
 
 class ImportProblemAction : AnAction(
-    get("importProblem"),
-    get("importProblemDescription"),
+    "URL로 부터 문제 가져오기",
+    "클립보드에 복사되어 있는 URL로 부터 문제를 가져옵니다.",
     null
 ) {
     private val parseService = service<ParseService>()
