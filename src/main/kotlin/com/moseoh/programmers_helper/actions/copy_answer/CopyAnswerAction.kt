@@ -19,8 +19,8 @@ import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
 class CopyAnswerAction : AnAction(
-    get("copyAnswer"),
-    get("copyAnswerDescription"),
+    "답안지 복사",
+    "현재 파일의 코드에서 답안 제출에 필요한 코드만 복사합니다.",
     null
 ) {
     private val settings = ProgrammersHelperSettings.state
