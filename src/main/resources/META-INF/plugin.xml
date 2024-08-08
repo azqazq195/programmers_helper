@@ -1,19 +1,20 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
-<idea-plugin>
-    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
-    <id>com.moseoh.programmers_helper</id>
+<idea-plugin require-restart="false">
+  <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+  <id>com.moseoh.programmers_helper</id>
 
-    <!-- Public plugin name should be written in Title Case.
-         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
-    <name>Programmers Helper</name>
+  <!-- Public plugin name should be written in Title Case.
+       Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+  <name>Programmers Helper</name>
 
-    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
-    <vendor email="azqazq195@gmail.com" url="https://github.com/azqazq195/programmers_helper">moseoh</vendor>
+  <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+  <vendor email="azqazq195@gmail.com" url="https://github.com/azqazq195/programmers_helper">moseoh
+  </vendor>
 
-    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
-         Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
-         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
-    <description><![CDATA[
+  <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+       Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
+       Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+  <description><![CDATA[
     <h1>Programmers Helper</h1>
     <p>Programmers Helper is an IntelliJ plugin designed to streamline your coding experience on the Programmers platform. The plugin offers seamless integration with the platform, enabling users to generate files and examples automatically by simply inputting a Programmers problem URL. Additionally, it takes care of formatting your code correctly for easy pasting on the Programmers website.</p>
     <h3>Key Features:</h3>
@@ -25,47 +26,48 @@
     <p>Please note that this plugin is specifically designed for Java and Kotlin languages, and there are no plans to support additional languages in the future. Boost your productivity and enhance your problem-solving experience on the Programmers platform with the Programmers Helper plugin.</p>
   ]]></description>
 
-    <change-notes><![CDATA[
+  <change-notes><![CDATA[
         <h2>Fixed</h2>
         <ul>
             <li>'displayName' attribute issue in 'LanguageConfigurable'.</li>
         </ul>
     ]]>
-    </change-notes>
+  </change-notes>
 
-    <!-- Product and plugin compatibility requirements.
-         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
-    <depends>com.intellij.modules.platform</depends>
+  <!-- Product and plugin compatibility requirements.
+       Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+  <depends>com.intellij.modules.platform</depends>
 
-    <resource-bundle>messages.messages</resource-bundle>
+  <resource-bundle>messages.messages</resource-bundle>
 
-    <!-- Extension points defined by the plugin.
-         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
-    <extensions defaultExtensionNs="com.intellij">
-        <notificationGroup id="Programmers Helper.Notification" displayType="BALLOON" isLogByDefault="true"/>
-        <applicationConfigurable
-                key="displayName"
-                parentId="tools"
-                id="com.moseoh.programmers_helper.settings.ui.LanguageConfigurable"
-                instance="com.moseoh.programmers_helper.settings.ui.LanguageConfigurable"
-        />
+  <!-- Extension points defined by the plugin.
+       Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+  <extensions defaultExtensionNs="com.intellij">
+    <notificationGroup id="Programmers Helper.Notification" displayType="BALLOON"
+      isLogByDefault="true"/>
+    <applicationConfigurable
+      key="displayName"
+      parentId="tools"
+      id="com.moseoh.programmers_helper.settings.ui.LanguageConfigurable"
+      instance="com.moseoh.programmers_helper.settings.ui.LanguageConfigurable"
+    />
 
-        <applicationService
-                serviceImplementation="com.moseoh.programmers_helper.settings.model.ProgrammersHelperSettings"/>
-    </extensions>
+    <applicationService
+      serviceImplementation="com.moseoh.programmers_helper.settings.model.ProgrammersHelperSettings"/>
+  </extensions>
 
-    <actions>
-        <action id="programmers.helper.importProblem"
-                class="com.moseoh.programmers_helper.actions.import_problem.ImportProblemAction">
-            <add-to-group group-id="CodeMenu" anchor="last"/>
-            <keyboard-shortcut keymap="$default" first-keystroke="ctrl shift P"/>
-            <keyboard-shortcut keymap="Mac OS X" first-keystroke="meta shift P"/>
-        </action>
-        <action id="programmers.helper.copyAnswerSheet"
-                class="com.moseoh.programmers_helper.actions.copy_answer.CopyAnswerAction">
-            <add-to-group group-id="CodeMenu" anchor="last"/>
-            <keyboard-shortcut keymap="$default" first-keystroke="ctrl shift W"/>
-            <keyboard-shortcut keymap="Mac OS X" first-keystroke="meta shift W"/>
-        </action>
-    </actions>
+  <actions>
+    <action id="programmers.helper.importProblem"
+      class="com.moseoh.programmers_helper.actions.import_problem.ImportProblemAction">
+      <add-to-group group-id="CodeMenu" anchor="last"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="ctrl shift P"/>
+      <keyboard-shortcut keymap="Mac OS X" first-keystroke="meta shift P"/>
+    </action>
+    <action id="programmers.helper.copyAnswerSheet"
+      class="com.moseoh.programmers_helper.actions.copy_answer.CopyAnswerAction">
+      <add-to-group group-id="CodeMenu" anchor="last"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="ctrl shift W"/>
+      <keyboard-shortcut keymap="Mac OS X" first-keystroke="meta shift W"/>
+    </action>
+  </actions>
 </idea-plugin>

@@ -1,30 +1,39 @@
+import org.jetbrains.intellij.platform.gradle.TestFrameworkType
+
 plugins {
     id("java")
     id("org.jetbrains.kotlin.jvm") version "1.9.0"
-    id("org.jetbrains.intellij") version "1.15.0"
+    id("org.jetbrains.intellij.platform") version "2.0.0"
 }
 
 group = "com.moseoh"
-version = "0.0.17"
+version = "0.0.18"
 
 repositories {
     mavenCentral()
-}
+    intellijPlatform {
+        defaultRepositories()
+    }
 
+}
 dependencies {
-    implementation("org.freemarker:freemarker:2.3.32")
+    intellijPlatform {
+        intellijIdeaUltimate("2024.2")
+
+        bundledPlugin("com.intellij.java")
+        pluginVerifier()
+        zipSigner()
+        instrumentationTools()
+
+        testFramework(TestFrameworkType.Platform)
+    }
+
+    implementation("org.freemarker:freemarker:2.3.33")
     implementation("org.jsoup:jsoup:1.15.4")
+
     testImplementation("io.mockk:mockk:1.13.4")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
-}
-
-// Configure Gradle IntelliJ Plugin
-// Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
-intellij {
-    version.set("2024.1.1")
-    type.set("IC") // Target IDE Platform
-
-    plugins.set(listOf(/* Plugin Dependencies */))
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.3")
+    testImplementation("junit:junit:4.13.2")
 }
 
 tasks {
@@ -37,9 +46,13 @@ tasks {
         kotlinOptions.jvmTarget = "17"
     }
 
+    withType<Test> {
+        useJUnitPlatform()
+    }
+
     patchPluginXml {
-        sinceBuild.set("231")
-        untilBuild.set("241.*")
+        sinceBuild.set("231.*")
+        untilBuild.set("242.*")
     }
 
     signPlugin {
