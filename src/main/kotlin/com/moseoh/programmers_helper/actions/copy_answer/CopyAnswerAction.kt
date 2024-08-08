@@ -17,12 +17,11 @@ import java.awt.Toolkit
 import java.awt.datatransfer.StringSelection
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
-import java.util.function.Supplier
 
 class CopyAnswerAction : AnAction(
-    lazy("copyAnswer"),
-    lazy("copyAnswerDescription"),
-    Supplier { null }
+    get("copyAnswer"),
+    get("copyAnswerDescription"),
+    null
 ) {
     private val settings = ProgrammersHelperSettings.state
     private val javaCopyAnswerService = service<JavaCopyAnswerService>()

@@ -11,7 +11,7 @@ import com.intellij.openapi.ui.Messages
 import com.intellij.openapi.vfs.LocalFileSystem
 import com.intellij.openapi.vfs.VirtualFile
 import com.moseoh.programmers_helper._common.CException
-import com.moseoh.programmers_helper._common.PluginBundle.lazy
+import com.moseoh.programmers_helper._common.PluginBundle.get
 import com.moseoh.programmers_helper.actions.import_problem.service.FileService
 import com.moseoh.programmers_helper.actions.import_problem.service.ParseService
 import com.moseoh.programmers_helper.actions.import_problem.service.dto.ProblemDto
@@ -20,13 +20,12 @@ import org.jsoup.HttpStatusException
 import org.jsoup.Jsoup
 import java.awt.Toolkit
 import java.awt.datatransfer.DataFlavor
-import java.util.function.Supplier
 
 
 class ImportProblemAction : AnAction(
-    lazy("importProblem"),
-    lazy("importProblemDescription"),
-    Supplier { null }
+    get("importProblem"),
+    get("importProblemDescription"),
+    null
 ) {
     private val parseService = service<ParseService>()
     private val fileService = service<FileService>()

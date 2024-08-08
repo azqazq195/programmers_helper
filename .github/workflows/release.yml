@@ -61,7 +61,7 @@ jobs:
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
-        
+
       - name: Build plugin
         run: ./gradlew buildPlugin
 
@@ -87,9 +87,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./build/libs/programmers_helper-${{ env.VERSION }}.jar
-          asset_name: programmers_helper-${{ env.VERSION }}.jar
-          asset_content_type: application/java-archive
+          asset_path: ./build/distributions/programmers_helper-${{ env.VERSION }}.zip
+          asset_name: programmers_helper-${{ env.VERSION }}.zip
+          asset_content_type: application/zip
 
       - name: Publish plugin to IntelliJ Marketplace
         run: ./gradlew publishPlugin
